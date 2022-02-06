@@ -36,11 +36,14 @@ public class PowerGem : MonoBehaviour {
 	void Start () 
     {
 		sp = GetComponent<SpriteRenderer> ();
+
+        // Set initial sate
 		L1.SetActive (false);
 		L2.SetActive (false);
 		L3.SetActive (false);
 		L4.SetActive (false);
 		
+        // Set position of dots programatically
         switch (ActivateNum) {
 		case 1:
 			greyPG = greyPG1;

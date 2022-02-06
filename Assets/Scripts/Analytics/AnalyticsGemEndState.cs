@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Newtonsoft.Json;
 
 public class AnalyticsGemEndState {
 
@@ -47,7 +46,7 @@ public class AnalyticsGemEndState {
     /// <returns>JSON data of gem end state</returns>
     public string ToJson()
     {
-        return JsonConvert.SerializeObject(mirrorData);
+        return JsonUtility.ToJson(mirrorData);
     }
 
 	/// <summary>

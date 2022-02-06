@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,6 +47,6 @@ public class AnalyticsGemHistory {
     /// <returns>The JSON data of gem history</returns>
     public string ToJson()
     {
-        return JsonConvert.SerializeObject(actionData);
+        return JsonUtility.ToJson(actionData);
     }
 }
