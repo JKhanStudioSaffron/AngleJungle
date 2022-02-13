@@ -54,7 +54,7 @@ public class PowerGem : MonoBehaviour {
 		case 2:
 			greyPG = greyPG2;
 			redPG = redPG2;
-			countFactor = 1.4f;
+			countFactor = 1f;
 			L1.transform.localPosition = new Vector2 (-0.924f, -2.188f);
 			L2.transform.localPosition = new Vector2 (0.627f, -2.158f);
 			break;
@@ -142,7 +142,7 @@ public class PowerGem : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D coll)
 	{
-		print (coll.gameObject.name);
+		//print (coll.gameObject.name);
 	}
 
 	/// <summary>
@@ -154,8 +154,9 @@ public class PowerGem : MonoBehaviour {
 	public void ActivateGem()
     {
 		countDown = Mathf.Min((countDown + 1f), 4);
-		//countDown ++;
-		if (countDown >= 4) 
+        //print(countDown);
+        //countDown ++;
+        if (countDown >= 4) 
         {
 			PowerGemParticle.SetActive (true);
 			sp.sprite = redPG;
@@ -180,7 +181,7 @@ public class PowerGem : MonoBehaviour {
     {
 		while (true)
         {
-			yield return new WaitForSeconds (0.01f);
+			yield return new WaitForSeconds (0.0014f);
 			countDown = Mathf.Max((countDown - countFactor), -1f);//1:-0.5; 2:-1; 3:-2.3; 4:3.0
 			
             if (countDown <= 0) 

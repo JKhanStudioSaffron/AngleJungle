@@ -21,7 +21,7 @@ public class LightLine : MonoBehaviour {
             //}
         }
 
-        print("collision!");
-        print(other.tag);
+        //print("collision!");
+        //print(other.tag);
 	}
 }
