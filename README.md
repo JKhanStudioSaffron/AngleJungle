@@ -2,12 +2,14 @@
 
 Source code for Angle Jungle.
 
-Copyright belongs to:
+Developers and Copyright holders:
 
 Jibran Khan <br />
 Jun Wang <br />
 Xueyang Wang <br />
 Yonglin Zhang <br />
+
+Maintained By: [Studio Saffron](https://Studio-Saffron.com)
 
 Project description: http://wp.me/p3uZlz-1Fh <br />
 Development post: http://somegamez.com/wit/transformational-complexity
