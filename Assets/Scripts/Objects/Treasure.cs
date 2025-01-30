@@ -26,29 +26,26 @@ public class Treasure : MonoBehaviour {
 		par_Chest.SetActive (false);
 		scene = SceneManager.GetActiveScene ();
 		levelIndex = scene.buildIndex - 1;
-		
-        //Play Ambient Sound
-		musicManager = GameObject.FindGameObjectWithTag (Global.TAG_MUSIC_MANAGER);
-		
+		        
         if (levelIndex <= 7)
         {
-			musicManager.GetComponent<MusicManager> ().PlayS1Sound ();
+			MusicManager.Instance.PlayS1Sound ();
 		} 
         else if (levelIndex > 7 && levelIndex <= 13)
         {
-			musicManager.GetComponent<MusicManager> ().PlayS2Sound ();
+			MusicManager.Instance.PlayS2Sound ();
 		}
         else if (levelIndex > 13 && levelIndex <= 18) 
         {
-			musicManager.GetComponent<MusicManager> ().PlayS3Sound ();
+			MusicManager.Instance.PlayS3Sound ();
 		} 
         else if (levelIndex > 18 && levelIndex <= 25) 
         {
-			musicManager.GetComponent<MusicManager> ().PlayS4Sound ();
+			MusicManager.Instance.PlayS4Sound ();
 		}
         else 
         {
-			musicManager.GetComponent<MusicManager> ().PlayS5Sound ();
+			MusicManager.Instance.PlayS5Sound ();
 		}
 
 		if(TreasureCanvas != null)

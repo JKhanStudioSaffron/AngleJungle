@@ -1,0 +1,204 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: StringTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: StringTable
+  m_TableCollectionNameGuidString: 9d5006e08b3f41b498347ceda59da6b2
+  m_Entries:
+  - m_Id: 719179673726976
+    m_Key: Options/Canvas/OptionPanel/soundArea/sound tmp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 719278009184256
+    m_Key: Options/Canvas/OptionPanel/soundArea/Master/MasterTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 719350121852928
+    m_Key: Options/Canvas/OptionPanel/soundArea/MusicSlider/MusicTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 719399325233152
+    m_Key: Options/Canvas/OptionPanel/soundArea/SfxSlider/SFXTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 725344755347456
+    m_Key: "Options/Canvas/OptionPanel/soundArea/SfxSlider/SfxMute/\u0612Label"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 725344784707584
+    m_Key: "Options/Canvas/OptionPanel/soundArea/MusicSlider/MusicMute/\u0612Label"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 725344805679104
+    m_Key: "Options/Canvas/OptionPanel/soundArea/Master/MasterMute/\u0612Label"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5836345867726848
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/AccessiblityTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 110240632369152
+    m_Key: Options/Canvas/OptionsPanel/TextSize/Label 10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 385059001167872
+    m_Key: Canvas/OptionsPanel/Language/Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 385082048868352
+    m_Key: Empty/Canvas/OptionsPanel/Language/Label 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 444605824462848
+    m_Key: Options/Canvas/OptionsPanel/ApplyButton/Text (TMP) 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 451836167024640
+    m_Key: Options/Canvas/OptionsPanel/TextSize (1)/Dropdown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 451957684400128
+    m_Key: Options/Canvas/OptionsPanel/TextSize (1)/Dropdown 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 452004924846080
+    m_Key: Options/Canvas/OptionsPanel/TextSize (1)/Dropdown 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 452041855692800
+    m_Key: Options/Canvas/OptionsPanel/TextSize (1)/Dropdown 3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 741306770616320
+    m_Key: Options/Canvas/option text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2194306148036608
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/ColorBlind/Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2197538324836352
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/ColorBlind/Dropdown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2197626132590592
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/ColorBlind/Dropdown
+      1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2197700933808128
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/ColorBlind/Dropdown
+      2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2197756877434880
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/ColorBlind/Dropdown
+      3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229454872735744
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/Language/Dropdown
+      (1)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229489211502592
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/Language/Dropdown
+      (1) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2229511147712512
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/Language/Dropdown
+      (1) 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2571407913086976
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/ColorBlind/Dropdown/Template/Viewport/Content/Item/Item
+      Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23558609098731520
+    m_Key: AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/Master/MasterTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23558922912362496
+    m_Key: AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/MusicSlider/MusicTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23558986347016192
+    m_Key: AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/SfxSlider/SFXTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23559053288108032
+    m_Key: AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/SoundTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23559194015395840
+    m_Key: "AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/MusicSlider/MusicMute/\u0612Label"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23559250227458048
+    m_Key: "AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/Master/MasterMute/\u0612Label"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23559294720634880
+    m_Key: "AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/SfxSlider/SfxMute/\u0612Label"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23613548831404032
+    m_Key: Canvas_StageClear/Canvas_StageClear/btn_Treasure/txt_Treasure
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23613586232012800
+    m_Key: Canvas_StageClear/Canvas_StageClear/btn_Map/txt_Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23613616846237696
+    m_Key: Canvas_StageClear/Canvas_StageClear/btn_NextLevel/txt_NextLevel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23613649012355072
+    m_Key: Canvas_StageClear/Canvas_StageClear/btn_Restart/txt_Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23628935090368512
+    m_Key: Canvas_Pause/Canvas_Pause/btn_Restart/txt_Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23628935186837504
+    m_Key: Canvas_Pause/Canvas_Pause/btn_Map/txt_Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23628935191031808
+    m_Key: Canvas_Pause/Canvas_Pause/btn_Resume/txt_Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23648115684503552
+    m_Key: Start/ResetCanvas/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23648814694625280
+    m_Key: Start/ResetConfirmCanvas/Text
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4798599191477616664
+  references:
+    version: 2
+    RefIds:
+    - rid: 4798599191477616664
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1732600843223

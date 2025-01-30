@@ -125,22 +125,20 @@ public class TrophyManager : MonoBehaviour {
 			StartCoroutine (CountToShowAnim());
 		}
 
-        musicManager = GameObject.FindGameObjectWithTag (Global.TAG_MUSIC_MANAGER);
-
 		if (levelProgress <= 1) 
         {
-			musicManager.GetComponent<MusicManager> ().PlayCabinSound ();
+			MusicManager.Instance.PlayCabinSound ();
 		} 
         else
         {
-			musicManager.GetComponent<MusicManager> ().PlayCabin2Sound ();
+			MusicManager.Instance.PlayCabin2Sound ();
 		}
 
 	}
 
 	public void ReturnMap()
     {
-		musicManager.GetComponent<MusicManager> ().PlayClickButton ();
+		MusicManager.Instance.PlayClickButton ();
         SceneManager.LoadScene (Global.SCENE_MAP);
 	}
 

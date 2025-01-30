@@ -1,0 +1,1151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: AssetTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: AssetTable
+  m_TableCollectionNameGuidString: bf6d4737eee02a04194f7c839498fe6e
+  m_Entries:
+  - m_Id: 709867240910848
+    m_Key: Options/Canvas/option text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 709867412877312
+    m_Key: Options/Canvas/option text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 803910478163968
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/TextSize/Dropdown/Template/Viewport/Content/Item/Item
+      Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 814873763868672
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/Language/Dropdown
+      (1)/Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 814873902280704
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/Language/Dropdown
+      (1)/Label 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2162875388620800
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/ColorBlind/Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2162875950657536
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/ColorBlind/Label
+      1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2198800646762496
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/Language/Dropdown
+      (1)/Template/Viewport/Content/Item/Item Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2198800936169472
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/Language/Dropdown
+      (1)/Template/Viewport/Content/Item/Item Label 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5804903100018688
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/AccessiblityTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5804903515254784
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/AccessiblityTitle
+      1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8361889431777280
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/Language/Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8361889712795648
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/Language/Label
+      1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8362334690701312
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/TextSize/Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8362334724255744
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/TextSize/Label
+      1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8362430526353408
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/TextSize/Dropdown/Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8362430547324928
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/TextSize/Dropdown/Label
+      1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8362751596130304
+    m_Key: Options/Canvas/OptionPanel/ApplyButton/Text (TMP)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8362751625490432
+    m_Key: Options/Canvas/OptionPanel/ApplyButton/Text (TMP) 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8362839131254784
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/ColorBlind/Dropdown/Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8362839169003520
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/ColorBlind/Dropdown/Label
+      1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8364216968507392
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/TextSize/Dropdown/Template/Viewport/Content/Item/Item
+      Label 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8364599707136000
+    m_Key: Options/Canvas/OptionPanel/Lanaguage,Text,ColorBlindPanel/ColorBlind/Dropdown/Template/Viewport/Content/Item/Item
+      Label
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23543174064205824
+    m_Key: AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/Master/MasterTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23543177692278784
+    m_Key: AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/Master/MasterTitle
+      1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23543177734221824
+    m_Key: AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/SoundTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23543177771970560
+    m_Key: AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/SoundTitle 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23543177805524992
+    m_Key: "AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/MusicSlider/MusicMute/\u0612Label"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23543177847468032
+    m_Key: "AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/MusicSlider/MusicMute/\u0612Label
+      1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23543177876828160
+    m_Key: "AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/SfxSlider/SfxMute/\u0612Label"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23543177918771200
+    m_Key: "AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/SfxSlider/SfxMute/\u0612Label
+      1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23543177952325632
+    m_Key: AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/SfxSlider/SFXTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23543177990074368
+    m_Key: AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/SfxSlider/SFXTitle
+      1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23543178023628800
+    m_Key: "AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/Master/MasterMute/\u0612Label"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23543178065571840
+    m_Key: "AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/Master/MasterMute/\u0612Label
+      1"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23543178103320576
+    m_Key: AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/MusicSlider/MusicTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23543178141069312
+    m_Key: AccessibilitySystem/Canvas/OptionPanel (1)/SoundPanel/MusicSlider/MusicTitle
+      1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23564873245618176
+    m_Key: Canvas_InGame/Canvas_InGame/btn_Pause/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23564873618911232
+    m_Key: Canvas_InGame/Canvas_InGame/btn_Pause/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567171795513344
+    m_Key: StageNew/StageCanvas/Buttons/btn_28/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172152029184
+    m_Key: StageNew/StageCanvas/Buttons/btn_28/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172181389312
+    m_Key: StageNew/StageCanvas/Buttons/btn_15/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172210749440
+    m_Key: StageNew/StageCanvas/Buttons/btn_15/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172244303872
+    m_Key: StageNew/StageCanvas/Buttons/btn_5/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172273664000
+    m_Key: StageNew/StageCanvas/Buttons/btn_5/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172303024128
+    m_Key: StageNew/StageCanvas/Buttons/btn_17/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172332384256
+    m_Key: StageNew/StageCanvas/Buttons/btn_17/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172365938688
+    m_Key: StageNew/StageCanvas/Buttons/btn_3/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172399493120
+    m_Key: StageNew/StageCanvas/Buttons/btn_3/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172428853248
+    m_Key: StageNew/StageCanvas/Buttons/btn_6/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172462407680
+    m_Key: StageNew/StageCanvas/Buttons/btn_6/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172487573504
+    m_Key: StageNew/StageCanvas/Buttons/btn_22/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172521127936
+    m_Key: StageNew/StageCanvas/Buttons/btn_22/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172554682368
+    m_Key: StageNew/StageCanvas/Buttons/btn_10/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172600819712
+    m_Key: StageNew/StageCanvas/Buttons/btn_10/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172634374144
+    m_Key: StageNew/StageCanvas/Buttons/btn_29/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172659539968
+    m_Key: StageNew/StageCanvas/Buttons/btn_29/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172693094400
+    m_Key: StageNew/StageCanvas/Buttons/btn_26/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172735037440
+    m_Key: StageNew/StageCanvas/Buttons/btn_26/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172785369088
+    m_Key: StageNew/StageCanvas/Buttons/btn_25/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172823117824
+    m_Key: StageNew/StageCanvas/Buttons/btn_25/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172886032384
+    m_Key: StageNew/StageCanvas/Buttons/btn_27/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172927975424
+    m_Key: StageNew/StageCanvas/Buttons/btn_27/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172969918464
+    m_Key: StageNew/StageCanvas/Buttons/btn_12/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567172999278592
+    m_Key: StageNew/StageCanvas/Buttons/btn_12/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173037027328
+    m_Key: StageNew/StageCanvas/Buttons/btn_30/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173062193152
+    m_Key: StageNew/StageCanvas/Buttons/btn_30/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173099941888
+    m_Key: StageNew/StageCanvas/Buttons/btn_14/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173137690624
+    m_Key: StageNew/StageCanvas/Buttons/btn_14/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173179633664
+    m_Key: StageNew/StageCanvas/Buttons/btn_13/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173208993792
+    m_Key: StageNew/StageCanvas/Buttons/btn_13/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173242548224
+    m_Key: StageNew/StageCanvas/Buttons/btn_1/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173284491264
+    m_Key: StageNew/StageCanvas/Buttons/btn_1/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173309657088
+    m_Key: StageNew/StageCanvas/Buttons/btn_16/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173351600128
+    m_Key: StageNew/StageCanvas/Buttons/btn_16/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173397737472
+    m_Key: StageNew/StageCanvas/Buttons/btn_19/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173435486208
+    m_Key: StageNew/StageCanvas/Buttons/btn_19/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173473234944
+    m_Key: StageNew/StageCanvas/Buttons/btn_8/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173515177984
+    m_Key: StageNew/StageCanvas/Buttons/btn_8/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173561315328
+    m_Key: StageNew/StageCanvas/Buttons/btn_21/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173603258368
+    m_Key: StageNew/StageCanvas/Buttons/btn_21/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173649395712
+    m_Key: StageNew/StageCanvas/Buttons/btn_7/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173687144448
+    m_Key: StageNew/StageCanvas/Buttons/btn_7/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173724893184
+    m_Key: StageNew/StageCanvas/Buttons/btn_9/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173771030528
+    m_Key: StageNew/StageCanvas/Buttons/btn_9/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173804584960
+    m_Key: StageNew/StageCanvas/Buttons/btn_24/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173846528000
+    m_Key: StageNew/StageCanvas/Buttons/btn_24/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173888471040
+    m_Key: StageNew/StageCanvas/Buttons/btn_18/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173930414080
+    m_Key: StageNew/StageCanvas/Buttons/btn_18/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567173972357120
+    m_Key: StageNew/StageCanvas/Buttons/btn_2/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567174014300160
+    m_Key: StageNew/StageCanvas/Buttons/btn_2/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567174052048896
+    m_Key: StageNew/StageCanvas/Buttons/btn_23/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567174093991936
+    m_Key: StageNew/StageCanvas/Buttons/btn_23/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567174135934976
+    m_Key: StageNew/StageCanvas/Buttons/btn_11/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567174177878016
+    m_Key: StageNew/StageCanvas/Buttons/btn_11/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567174236598272
+    m_Key: StageNew/StageCanvas/Buttons/btn_4/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567174278541312
+    m_Key: StageNew/StageCanvas/Buttons/btn_4/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567174345650176
+    m_Key: StageNew/StageCanvas/Buttons/btn_20/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23567174379204608
+    m_Key: StageNew/StageCanvas/Buttons/btn_20/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23581330994065408
+    m_Key: Canvas_StageClear/Canvas_StageClear/LevelText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23581331329609728
+    m_Key: Canvas_StageClear/Canvas_StageClear/LevelText 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23581646196011008
+    m_Key: Canvas_StageClear/Canvas_StageClear/btn_Map/txt_Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23581646263119872
+    m_Key: Canvas_StageClear/Canvas_StageClear/btn_Map/txt_Map 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23581646347005952
+    m_Key: Canvas_StageClear/Canvas_StageClear/btn_Treasure/txt_Treasure
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23581646401531904
+    m_Key: Canvas_StageClear/Canvas_StageClear/btn_Treasure/txt_Treasure 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23581646472835072
+    m_Key: Canvas_StageClear/Canvas_StageClear/btn_NextLevel/txt_NextLevel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23581646531555328
+    m_Key: Canvas_StageClear/Canvas_StageClear/btn_NextLevel/txt_NextLevel 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23581646602858496
+    m_Key: Canvas_StageClear/Canvas_StageClear/btn_Restart/txt_Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23581646661578752
+    m_Key: Canvas_StageClear/Canvas_StageClear/btn_Restart/txt_Restart 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23597443144445952
+    m_Key: Canvas_Pause/Canvas_Pause/btn_Restart/txt_Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23597443622596608
+    m_Key: Canvas_Pause/Canvas_Pause/btn_Restart/txt_Restart 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23597443714871296
+    m_Key: Canvas_Pause/Canvas_Pause/btn_Map/txt_Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23597443761008640
+    m_Key: Canvas_Pause/Canvas_Pause/btn_Map/txt_Map 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23597443823923200
+    m_Key: Canvas_Pause/Canvas_Pause/btn_Resume/txt_Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23597443874254848
+    m_Key: Canvas_Pause/Canvas_Pause/btn_Resume/txt_Resume 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23616515219353600
+    m_Key: Start/ResetCanvas/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23616515663949824
+    m_Key: Start/ResetCanvas/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23617247100235776
+    m_Key: Start/ResetConfirmCanvas/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23617247179927552
+    m_Key: Start/ResetConfirmCanvas/Text 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23619999075364864
+    m_Key: Mirror/Mirror/Sector/Canvas/Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23619999536738304
+    m_Key: Mirror/Mirror/Sector/Canvas/Text 1
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items:
+    - rid: 4798599191477616674
+    - rid: 4798599191477616677
+  m_KeyGenerator:
+    rid: 4798599191477616669
+  references:
+    version: 2
+    RefIds:
+    - rid: 4798599191477616669
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1732608342493
+    - rid: 4798599191477616674
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 709867240910848
+          m_TableCodes:
+          - en
+          - ur
+          - ar
+        - m_KeyId: 814873763868672
+          m_TableCodes:
+          - en
+          - ur
+          - ar
+        - m_KeyId: 2162875388620800
+          m_TableCodes:
+          - en
+          - ur
+          - ar
+        - m_KeyId: 2198800646762496
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 5804903100018688
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 8361889431777280
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 8362334690701312
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 8362430526353408
+          m_TableCodes:
+          - ur
+          - ar
+          - en
+        - m_KeyId: 8362751596130304
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 8362839131254784
+          m_TableCodes:
+          - ur
+          - ar
+          - en
+        - m_KeyId: 8364216968507392
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 8364599707136000
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23543174064205824
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23543177734221824
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23543177805524992
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23543177876828160
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23543177952325632
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23543178023628800
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23543178103320576
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23564873245618176
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567171795513344
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172181389312
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172244303872
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172303024128
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172365938688
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172428853248
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172487573504
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172554682368
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172634374144
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172693094400
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172785369088
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172886032384
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172969918464
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173037027328
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173099941888
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173179633664
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173242548224
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173309657088
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173397737472
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173473234944
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173561315328
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173649395712
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173724893184
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173804584960
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173888471040
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173972357120
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567174052048896
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567174135934976
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567174236598272
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567174345650176
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23581330994065408
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23581646196011008
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23581646347005952
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23581646472835072
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23581646602858496
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23597443144445952
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23597443714871296
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23597443823923200
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23616515219353600
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23617247100235776
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23619999075364864
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        m_TypeString: TMPro.TMP_FontAsset, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+    - rid: 4798599191477616677
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 709867412877312
+          m_TableCodes:
+          - en
+          - ur
+          - ar
+        - m_KeyId: 803910478163968
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 814873902280704
+          m_TableCodes:
+          - en
+          - ur
+          - ar
+        - m_KeyId: 2162875950657536
+          m_TableCodes:
+          - en
+          - ur
+          - ar
+        - m_KeyId: 2198800936169472
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 5804903515254784
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 8361889712795648
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 8362334724255744
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 8362430547324928
+          m_TableCodes:
+          - ur
+          - ar
+          - en
+        - m_KeyId: 8362751625490432
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 8362839169003520
+          m_TableCodes:
+          - ur
+          - ar
+          - en
+        - m_KeyId: 23543177692278784
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23543177771970560
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23543177847468032
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23543177918771200
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23543177990074368
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23543178065571840
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23543178141069312
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23564873618911232
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172152029184
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172210749440
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172273664000
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172332384256
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172399493120
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172462407680
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172521127936
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172600819712
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172659539968
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172735037440
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172823117824
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172927975424
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567172999278592
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173062193152
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173137690624
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173208993792
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173284491264
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173351600128
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173435486208
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173515177984
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173603258368
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173687144448
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173771030528
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173846528000
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567173930414080
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567174014300160
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567174093991936
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567174177878016
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567174278541312
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23567174379204608
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23581331329609728
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23581646263119872
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23581646401531904
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23581646531555328
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23581646661578752
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23597443622596608
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23597443761008640
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23597443874254848
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23616515663949824
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23617247179927552
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        - m_KeyId: 23619999536738304
+          m_TableCodes:
+          - en
+          - ar
+          - ur
+        m_TypeString: UnityEngine.Material, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null

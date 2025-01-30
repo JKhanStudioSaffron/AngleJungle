@@ -1,0 +1,21 @@
+AccessibilityMenu Package Documentation
+
+This package provides scripts and tools for accessibility features like colorblind mode, language selection, text resizing, and saving user preferences. Below is an overview of its components:
+
+Key Features:
+1. LocalizationData: Assets for managing multilingual support using Unity's Localization Package.
+2. Plugin3rdParty: Integrates tools like Colorblind Effect, Easy Alphabet Arabic, and TextMesh Pro.
+3. Scripts:
+   - ColorblindScripts: Manages colorblind modes (`SetColorBlindMode`, `ChangeColorBlindMode`).
+   - LanguageSelectorScripts: Handles language switching and RTL adjustments.
+   - TextResizingScripts: Supports dynamic text resizing (`CallResizeText`, `TextResize`).
+   - OptionsManager: Central manager for accessibility options.
+   - AccessibilitySaveObject: Saves and loads user preferences.
+
+How to Use:
+- Install Unity's Localization Package from Package Manager.
+- Go to Edit/Project Settings/Localization and add Localization Settings.
+- If Available Locales list is empty, Press Add All button to Add the existing locales from package.
+- Open the Options scene, the scene has been setup with all 3 accessiblity options.
+- Add and manage accessibility settings with provided scripts.
+- Ensure `AccessibilitySaveObject` handles preference persistence.

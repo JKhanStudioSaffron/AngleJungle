@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
 	public GameObject GoButton;
 	public GameObject door;
 
-	private GameObject musicManager;
 
 	private GameObject[] protractors;
 
@@ -55,12 +54,6 @@ public class GameManager : MonoBehaviour
 		Global.isPaused = false;
 		protractors = GameObject.FindGameObjectsWithTag (Global.TAG_PROTRACTOR);
 
-		foreach (GameObject pro in protractors) 
-		{
-			//pro.SetActive (false);
-		}
-
-		musicManager = GameObject.FindGameObjectWithTag (Global.TAG_MUSIC_MANAGER);
 	}
 	
 	// Update is called once per frame
@@ -108,7 +101,7 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	public void PlayButtonClickSound()
 	{
-		musicManager.GetComponent<MusicManager> ().PlayClickButton ();
+		MusicManager.Instance.PlayClickButton ();
 	}
 
 	/// <summary>
@@ -122,7 +115,14 @@ public class GameManager : MonoBehaviour
 		canvasInGame.SetActive (false);
 		canvasPause.SetActive (false);
 		Global.isPaused = true;
-	}
+		Invoke(nameof(RefreshText), 0.5f);
+    }
+
+	void RefreshText()
+	{
+        RTLTextFixer.RefreshText?.Invoke();
+        TextResize.ResizeText?.Invoke(AccessibilitySaveObject.Instance.OptionsData.FontMultiplier);
+    }
 
 	/// <summary>
 	/// Shows the treasure if this level is trophy level

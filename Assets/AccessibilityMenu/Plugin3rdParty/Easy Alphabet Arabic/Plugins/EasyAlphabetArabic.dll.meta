@@ -1,0 +1,36 @@
+fileFormatVersion: 2
+guid: 8f1f10ce6c2c58c4b97ddf278d0bc5ec
+labels:
+- Localization
+- Farsi
+- Urdu
+- Persian
+- Uyghur
+- Text
+- Localisation
+- Correct
+- Rtl
+- Support
+- Alphabet
+- Easy
+- Arabic
+- Language
+PluginImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  iconMap: {}
+  executionOrder: {}
+  defineConstraints: []
+  isPreloaded: 0
+  isOverridable: 0
+  isExplicitlyReferenced: 0
+  validateReferences: 1
+  platformData:
+  - first:
+      Any: 
+    second:
+      enabled: 1
+      settings: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
