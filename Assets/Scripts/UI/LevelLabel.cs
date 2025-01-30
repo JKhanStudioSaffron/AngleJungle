@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,10 +14,14 @@ public class LevelLabel : MonoBehaviour {
     {
 		Scene scene = SceneManager.GetActiveScene ();
 		int levelIndex = scene.buildIndex - 1;
-		string levelIndexStr = levelIndex < 10 ? (" " + levelIndex.ToString ()) : levelIndex.ToString ();
-		if(Uppercase)
-			GetComponent<Text> ().text = "LEVEL " + levelIndexStr;
-		else
-			GetComponent<Text> ().text = "Level " + levelIndexStr;
+		
+		string localizedIndex = LocalizedNumberManager.GetLocalizedNumber(levelIndex);
+
+		string levelIndexStr = LocalizedNumberManager.Level + " " + localizedIndex;
+
+		if (UpperCase)
+			levelIndexStr = levelIndexStr.ToUpper();
+
+		GetComponent<TMP_Text>().text = levelIndexStr;
 	}
 }

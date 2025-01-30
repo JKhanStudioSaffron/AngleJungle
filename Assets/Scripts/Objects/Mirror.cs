@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 using Vectrosity;
 
@@ -26,7 +29,7 @@ public class Mirror : MonoBehaviour
 	public int slots=0;
 	public AudioSource as_putIn;
 	public GameObject line;
-	public Text Angle_Text;
+	public TMP_Text Angle_Text;
 	public bool isReceiver = false;
 
 	private Sprite greyMirrorSp;
@@ -167,7 +170,11 @@ public class Mirror : MonoBehaviour
 		if (Angle_Text) 
 		{
 			showNumber = normalizeAngle(degreeNumber);
-			Angle_Text.text = Mathf.RoundToInt(showNumber).ToString ()+"°";
+
+			Angle_Text.text = new CultureInfo(LocalizationSettings.SelectedLocale.Identifier.Code).TextInfo.IsRightToLeft ?
+                 "°" + LocalizedNumberManager.GetLocalizedNumber(Mathf.RoundToInt(showNumber)) :
+				LocalizedNumberManager.GetLocalizedNumber(Mathf.RoundToInt(showNumber)) + "°";
+
 			Angle_Text.gameObject.transform.localPosition = vect2_tmp * 100f;
 		}
 

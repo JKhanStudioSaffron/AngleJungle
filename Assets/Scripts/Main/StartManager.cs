@@ -158,5 +158,9 @@ public class StartManager : MonoBehaviour {
     {
         ResetConfirmCanvas.SetActive(false);
 		musicManager.GetComponent<MusicManager> ().PlayClickButton ();
+
+    public void ShowSettings()
+    {
+        SceneManager.LoadScene("AccessibilitySystem");
     }
 }
