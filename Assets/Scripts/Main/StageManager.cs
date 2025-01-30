@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class StageManager : MonoBehaviour {
 
@@ -17,39 +18,44 @@ public class StageManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		musicManager = GameObject.FindGameObjectWithTag (Global.TAG_MUSIC_MANAGER);
-		musicManager.GetComponent<MusicManager> ().PlayMAPSound ();
+		MusicManager.Instance.PlayMAPSound ();
 
 		showLoading = false;
 		SaveLoad.Load ();
 		currentLevelProgress = SaveLoad.data.LevelProgress;
-		//btn_1.GetComponent<Button> ().interactable = false;
-
-		for(int i=0;i<currentLevelProgress - 1;i++) 
+		for(int i=0;i < buttonsList.Length;i++) 
 		{
-			buttonsList [i].GetComponent<Button> ().interactable = true;
-			buttonsList [i].GetComponent<StageButton> ().ShowStar ();
-		}
+            bool btnInteract = false;
+            buttonsList[i].GetComponentInChildren<TMP_Text>().text = LocalizedNumberManager.GetLocalizedNumber(i + 1);
 
-        if(currentLevelProgress <= 30)
-            buttonsList [currentLevelProgress - 1].GetComponent<Button> ().interactable = true;
-	}
+			if (i < currentLevelProgress - 1)
+			{
+				buttonsList[i].GetComponent<StageButton>().ShowStar();
+            }
+            if(i <= currentLevelProgress - 1)
+			{
+                buttonsList[i].GetComponent<Button>().interactable = true;
+                btnInteract = true;
+            }
+			buttonsList[i].GetComponentInChildren<BtnTxtStage>().ButtonState?.Invoke(btnInteract);
+		}
+    }
 
 	public void LoadStage(string stageName)
 	{
-		musicManager.GetComponent<MusicManager> ().PlayClickButton ();
+		MusicManager.Instance.PlayClickButton ();
 		StartCoroutine (LoadStageCo(stageName));
 	}
 
 	public void LoadStart()
 	{
-		musicManager.GetComponent<MusicManager> ().PlayClickButton ();
+		MusicManager.Instance.PlayClickButton ();
 		SceneManager.LoadScene (Global.SCENE_START);
 	}
 
     public void LoadTreasure() 
 	{
-		musicManager.GetComponent<MusicManager> ().PlayCreakClickButton ();
+		MusicManager.Instance.PlayCreakClickButton ();
 		SceneManager.LoadScene(Global.SCENE_TREASURE);
     }
 

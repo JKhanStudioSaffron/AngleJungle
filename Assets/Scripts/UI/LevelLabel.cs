@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class LevelLabel : MonoBehaviour {
 	
-    public bool Uppercase = false;
+    public bool UpperCase = false;
 	
     // Use this for initialization
 	void Start () 

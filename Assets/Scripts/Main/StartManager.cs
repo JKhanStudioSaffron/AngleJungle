@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 
 public class StartManager : MonoBehaviour {
@@ -23,10 +24,17 @@ public class StartManager : MonoBehaviour {
 	void Start () 
     {
 		showLoading = false;
-		musicManager = GameObject.FindGameObjectWithTag (Global.TAG_MUSIC_MANAGER);
-		musicManager.GetComponent<MusicManager> ().PlayBGM ();
+		MusicManager.Instance.PlayBGM ();
+        SetUpLastSettings();
 	}
-	
+
+    void SetUpLastSettings()
+    {
+        var selectedLocale = LocalizationSettings.AvailableLocales.Locales[AccessibilitySaveObject.Instance.OptionsData.Language];
+        LocalizationSettings.SelectedLocale = selectedLocale;
+        TextResize.ResizeText?.Invoke(AccessibilitySaveObject.Instance.OptionsData.FontMultiplier);
+    }
+
     void OnGUI()
     {
 //        if (GUI.Button(new Rect(10, 10, 160, 100), "Reset(1)"))
@@ -99,7 +107,7 @@ public class StartManager : MonoBehaviour {
 
     public void LoadStage()
     {
-		musicManager.GetComponent<MusicManager> ().PlayMenuButton ();
+		MusicManager.Instance.PlayMenuButton ();
 		
         //reset everything
 		if (SaveLoad.data.LevelProgress < 1) {
@@ -126,38 +134,39 @@ public class StartManager : MonoBehaviour {
     public void HideInfo()
     {
         InfoCanvas.SetActive(false);
-		musicManager.GetComponent<MusicManager> ().PlayClickButton ();
+		MusicManager.Instance.PlayClickButton ();
     }
 
     public void ShowInfo()
     {
         InfoCanvas.SetActive(true);
-		musicManager.GetComponent<MusicManager> ().PlayMenuButton ();
+		MusicManager.Instance.PlayMenuButton ();
     }
 
     public void ShowReset()
     {
         ResetCanvas.SetActive(true);
-		musicManager.GetComponent<MusicManager> ().PlayMenuButton ();
+		MusicManager.Instance.PlayMenuButton ();
     }
 
     public void HideReset()
     {
         ResetCanvas.SetActive(false);
-		musicManager.GetComponent<MusicManager> ().PlayClickButton ();
+		MusicManager.Instance.PlayClickButton ();
     }
 
     private void ShowResetConfirm()
     {
         ResetCanvas.SetActive(false);
         ResetConfirmCanvas.SetActive(true);
-		musicManager.GetComponent<MusicManager> ().PlayClickButton ();
+		MusicManager.Instance.PlayClickButton ();
     }
 
     public void HideResetConfirm()
     {
         ResetConfirmCanvas.SetActive(false);
-		musicManager.GetComponent<MusicManager> ().PlayClickButton ();
+		MusicManager.Instance.PlayClickButton ();
+    }
 
     public void ShowSettings()
     {

@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour {
 	
-	public AudioSource BGM_as;
+	public static MusicManager Instance;
+    private void Awake()
+    {
+        if(Instance == null)
+		{
+			Instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		else
+			Destroy(gameObject);
+    }
+
+    public AudioSource BGM_as;
 	public AudioSource MAP_as;
 	public AudioSource CABIN_as;
 	public AudioSource CABIN_as2;
@@ -33,7 +45,9 @@ public class MusicManager : MonoBehaviour {
 	{
 		if (curAs == BGM_as)
 			return;
-		
+		else
+            if (curCo != null) StopCoroutine(curCo);
+
 		curCo = StartCoroutine(fadeOut(curAs));
 		curAs = BGM_as;
 		curAs.volume = 1f;
@@ -44,8 +58,10 @@ public class MusicManager : MonoBehaviour {
 	{
 		if (curAs == MAP_as)
 			return;
-		
-		curCo = StartCoroutine(fadeOut(curAs));
+        else
+            if (curCo != null) StopCoroutine(curCo);
+
+        curCo = StartCoroutine(fadeOut(curAs));
 		curAs = MAP_as;
 		curAs.volume = 1f;
 		curAs.Play();
@@ -55,8 +71,10 @@ public class MusicManager : MonoBehaviour {
 	{
 		if (curAs == CABIN_as)
 			return;
-		
-		curCo = StartCoroutine(fadeOut(curAs));
+        else
+            if(curCo != null) StopCoroutine(curCo);
+
+        curCo = StartCoroutine(fadeOut(curAs));
 		curAs = CABIN_as;
 		curAs.volume = 1f;
 		curAs.Play();
@@ -66,8 +84,10 @@ public class MusicManager : MonoBehaviour {
 	{
 		if (curAs == CABIN_as2)
 			return;
-		
-		curCo = StartCoroutine(fadeOut(curAs));
+        else
+            if (curCo != null) StopCoroutine(curCo);
+
+        curCo = StartCoroutine(fadeOut(curAs));
 		curAs = CABIN_as2;
 		curAs.volume = 1f;
 		curAs.Play();
@@ -77,8 +97,10 @@ public class MusicManager : MonoBehaviour {
 	{
 		if (curAs == S1_as)
 			return;
-		
-		curCo = StartCoroutine(fadeOut(curAs));
+        else
+            if (curCo != null) StopCoroutine(curCo);
+
+        curCo = StartCoroutine(fadeOut(curAs));
 		curAs = S1_as;
 		curAs.volume = 1f;
 		curAs.Play();
@@ -88,12 +110,9 @@ public class MusicManager : MonoBehaviour {
 	{
 		if (curAs == S2_as)
 			return;
+        else
+           if (curCo != null) StopCoroutine(curCo);
 		
-		if (curCo != null) 
-		{
-			StopCoroutine (curCo);
-		}
-
 		curCo = StartCoroutine(fadeOut(curAs));
 		curAs = S2_as;
 		curAs.volume = 1f;
@@ -104,11 +123,8 @@ public class MusicManager : MonoBehaviour {
 	{
 		if (curAs == S3_as)
 			return;
-		
-		if (curCo != null) 
-		{
-			StopCoroutine (curCo);
-		}
+        else
+            if (curCo != null) StopCoroutine(curCo);
 
 		curCo = StartCoroutine(fadeOut(curAs));
 		curAs = S3_as;
@@ -120,11 +136,8 @@ public class MusicManager : MonoBehaviour {
 	{
 		if (curAs == S4_as)
 			return;
-		
-		if (curCo != null) 
-		{
-			StopCoroutine (curCo);
-		}
+        else
+            if (curCo != null) StopCoroutine(curCo);
 
 		curCo = StartCoroutine(fadeOut(curAs));
 		curAs = S4_as;
@@ -136,11 +149,8 @@ public class MusicManager : MonoBehaviour {
 	{
 		if (curAs == S5_as)
 			return;
-		
-		if (curCo != null) 
-		{
-			StopCoroutine (curCo);
-		}
+        else
+           if (curCo != null) StopCoroutine(curCo);
 
 		curCo = StartCoroutine(fadeOut(curAs));
 		curAs = S5_as;
