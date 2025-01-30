@@ -1,0 +1,46 @@
+AudioWork Package Documentation
+
+Overview  
+The AudioWork package provides a modular system for managing audio in Unity projects. It includes tools for organizing audio clips, handling audio mixers, and managing playback.
+
+---
+
+Directory Structure:
+
+AudioData  
+- DataHolder: Contains `AudioClips` and `MusicClips` for managing sound effects and music.  
+- Scripts:  
+  - AudioClipHolder: A ScriptableObject for storing and referencing `AudioClips` and `MusicClips`.
+
+SampleAudios  
+- Mixer:  
+  - MasterMixer: Includes sub-mixers for `Master`, `Music`, `Sfx`, and `Snapshot`.
+
+Scene  
+- SoundSetting: Demo scene for audio settings integration.
+
+Scripts  
+- HelperClass: Utility scripts for saving/loading audio settings and extending functionality.  
+- Managers: Includes `AudioManager`, `AudioMixerManager`, and `SoundManager` for centralized audio control.  
+- SoundPlayer: Script for dynamically playing sounds.
+
+---
+
+How to Use  
+
+1. Set Up Audio Data:  
+   Create instances of `AudioClipHolder` to organize your `AudioClips` and `MusicClips`. Add your audio files to these instances.
+
+2. Configure Mixers:  
+   Use the `MasterMixer` and its sub-mixers (`Music`, `Sfx`, etc.) to control audio levels and transitions.
+
+3. Integrate Scripts:  
+   - Use `AudioManager` for pooling of audioSource.  
+   - Use `SoundManager` to trigger sounds and manage audio logic.  
+   - Use `SoundPlayer` for playing specific sounds dynamically.
+
+4. Customize Settings:  
+   Adjust audio settings in the SoundSetting scene or integrate similar UI in your project.
+
+5. Test and Iterate:  
+   Use the sample audio files and mixers provided in the SampleAudios folder to test your setup.

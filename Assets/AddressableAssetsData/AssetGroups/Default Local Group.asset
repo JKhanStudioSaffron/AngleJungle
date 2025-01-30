@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 3036eb7a76b4be2419ab50cca09a32d3
+  m_SerializeEntries:
+  - m_GUID: 92ba572f3a573bb4c84581fe11c3ad1c
+    m_Address: Assets/AccessibilityMenu/LocalizationData/Localization/Fonts/NotoNaskhArabic-VariableFont_wght.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5f3eec9989a35a4db8c0099d1867f41
+    m_Address: Assets/AccessibilityMenu/LocalizationData/Localization/Fonts/NotoSansArabic-Regular.ttf
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: b4a4113c0edec0645a248ce09bfb8bb3, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bde381677276a054ebba6e1b80b3fee5, type: 2}
+    - {fileID: 11400000, guid: 57843337855e7ea4fb0c6e7fb68d5bde, type: 2}

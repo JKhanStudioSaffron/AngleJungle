@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Urdu (ur)
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-Urdu (ur)
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 6f85dd558453063408c7f7529a4d1909
+  m_SerializeEntries:
+  - m_GUID: 7918a75d57509774e9229a677ff385dc
+    m_Address: Assets/AccessibilityMenu/LocalizationData/Localization/Fonts/NotoNaskhArabic-VariableFont_wght.asset
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ur
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: b4a4113c0edec0645a248ce09bfb8bb3, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8a5d1e2e1e1373747947332ab8acfbb8, type: 2}
+    - {fileID: 11400000, guid: 363ffde33a8c27d4ca6b1d55fdf9e6bb, type: 2}
