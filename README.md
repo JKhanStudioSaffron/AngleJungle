@@ -24,7 +24,7 @@ Setup Instructions:<br />
 
 Download Necessary Software: <br />
 
-1. [Download Unity 2020.3.26f1](https://unity3d.com/get-unity/download/archive) and necessary build support addons.
+1. [Download Unity 2022.3.34f1](https://unity3d.com/get-unity/download/archive) and necessary build support addons.
 2. [Download Github Desktop Client for Windows/Mac](https://desktop.github.com/)
 3. [Download Unity Github Plugin](https://unity.github.com/) or via the Unity Asset Store.
 
