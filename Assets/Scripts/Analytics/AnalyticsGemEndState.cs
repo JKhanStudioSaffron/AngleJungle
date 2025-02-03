@@ -59,7 +59,8 @@ public class AnalyticsGemEndState {
 		{
 			foreach (var slot in mirror.slotList) 
 			{
-				AddGem (mirror.gameObject.name, slot.targetGO.gameObject.name);
+				if(!slot.isSlotEmpty)
+					AddGem (mirror.gameObject.name, slot.targetGO.name);
 			}	
 		}
 	}

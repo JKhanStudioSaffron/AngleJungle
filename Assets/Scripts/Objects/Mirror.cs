@@ -4,9 +4,8 @@ using System.Globalization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
-using UnityEngine.UI;
-using Vectrosity;
 
+[System.Serializable]
 public class SlotUnit
 {
 	public bool isSlotEmpty;
@@ -320,6 +319,7 @@ public class Mirror : MonoBehaviour
 	public void DeactivateLight()
 	{
 		isActivated = false;
+		PowerGem.CheckLightActivated?.Invoke(line);
 	}
 
 	/// <summary>
