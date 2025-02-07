@@ -383,6 +383,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 114511472265378582, guid: 139477f9931e8fa4fbb93752e2e442a0,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114765033374216938, guid: 139477f9931e8fa4fbb93752e2e442a0,
         type: 3}
       propertyPath: TutorialHand
@@ -782,6 +787,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1138277949483402, guid: 68e5468cfe99a5f40b8bda993351e436, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114105866209562764, guid: 68e5468cfe99a5f40b8bda993351e436,
         type: 3}
       propertyPath: m_UiScaleMode
@@ -827,6 +836,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 227291866}
+    - target: {fileID: 223189299025965808, guid: 68e5468cfe99a5f40b8bda993351e436,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 416995865}
+    - target: {fileID: 223189299025965808, guid: 68e5468cfe99a5f40b8bda993351e436,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224956530958537504, guid: 68e5468cfe99a5f40b8bda993351e436,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1245,6 +1264,16 @@ PrefabInstance:
       propertyPath: m_ReferenceResolution.y
       value: 1536
       objectReference: {fileID: 0}
+    - target: {fileID: 223680597240593874, guid: 26b38caf9327a8840abbaf5038a7962c,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 416995865}
+    - target: {fileID: 223680597240593874, guid: 26b38caf9327a8840abbaf5038a7962c,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224327740056547566, guid: 26b38caf9327a8840abbaf5038a7962c,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1541,6 +1570,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1089075847929094, guid: 6e86ccd8d67675144a7321a755863c17, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114027831462993088, guid: 6e86ccd8d67675144a7321a755863c17,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1595,6 +1628,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ReferenceResolution.y
       value: 1536
+      objectReference: {fileID: 0}
+    - target: {fileID: 223384762548139930, guid: 6e86ccd8d67675144a7321a755863c17,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 416995865}
+    - target: {fileID: 223384762548139930, guid: 6e86ccd8d67675144a7321a755863c17,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224616832742159212, guid: 6e86ccd8d67675144a7321a755863c17,
         type: 3}
