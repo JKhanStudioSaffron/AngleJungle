@@ -32,8 +32,8 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_ANDROID
-    // Check if there's at least one touch on the screen
+        #if UNITY_ANDROID || UNITY_IOS
+        // Check if there's at least one touch on the screen
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0); // Get the first touch (index 0)
@@ -56,7 +56,7 @@ public class InputManager : MonoBehaviour
             }
         }
 
-#else
+        #else
 
         //checks if mouse moves
         if (lastCursorPosition != Input.mousePosition)
@@ -80,7 +80,7 @@ public class InputManager : MonoBehaviour
             Released?.Invoke();
         }
 
-#endif
+        #endif
 
     }
 }

@@ -1,5 +1,14 @@
 using UnityEngine;
 
+/// <summary>
+/// Purpose: Provides an extension method to convert `RuntimePlatform` to `BuildTargetFlags`.
+/// Responsibilities:
+/// - Maps Unity's `RuntimePlatform` enum to a corresponding `BuildTargetFlags` value.
+/// Usage:
+/// - Call `RuntimePlatform.ToBuildTargetFlag()` to get the appropriate `BuildTargetFlags` enum.
+/// - Useful for platform-specific logic, such as enabling/disabling features based on the build target.
+/// </summary>
+
 public static class BuildTargetExtensions
 {
     public static BuildTargetFlags ToBuildTargetFlag(this RuntimePlatform target)

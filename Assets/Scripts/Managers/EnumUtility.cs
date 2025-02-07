@@ -1,5 +1,16 @@
 using System;
 
+/// <summary>
+/// Purpose: Defines platform-specific build target flags for conditional feature toggling.
+/// Responsibilities:
+/// - Provides a bitwise `enum` to represent multiple platforms simultaneously.
+/// - Enables checking for specific or combined platform support.
+/// Usage:
+/// - Use bitwise operations to check or combine multiple platforms.
+/// - Example: `BuildTargetFlags.Windows | BuildTargetFlags.Linux`
+/// </summary>
+
+
 [Flags]
 public enum BuildTargetFlags
 {
