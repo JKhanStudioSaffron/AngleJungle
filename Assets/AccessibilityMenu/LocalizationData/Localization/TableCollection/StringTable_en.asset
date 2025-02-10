@@ -77,15 +77,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2229454872735744
-    m_Localized: English
+    m_Localized: hsilgnE
     m_Metadata:
       m_Items: []
   - m_Id: 2229489211502592
-    m_Localized: Arabic
+    m_Localized: "\u0639\u0631\u0628\u064A"
     m_Metadata:
       m_Items: []
   - m_Id: 2229511147712512
-    m_Localized: Urdu
+    m_Localized: "\u0627\u0631\u062F\u0648"
     m_Metadata:
       m_Items: []
   - m_Id: 2571407913086976
