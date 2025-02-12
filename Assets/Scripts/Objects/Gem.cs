@@ -1,12 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Gem : MonoBehaviour
 {
 	// Ints
 	private int layerMask;
-	private int interfaceType;
 
 	public int gemAngle = 45;
 
@@ -15,22 +12,22 @@ public class Gem : MonoBehaviour
 
 	// Game objects
 	public GameObject initialMirror;
-	public GameObject gemToBeSwapped;
+	private Gem gemToBeSwapped;
 	public GameObject OnSelectPar;
-	public GameObject MirrorGO;
+	private Mirror MirrorGO;
 
 	// Vectors
 	private Vector2 slotPosition;
 
-	private Vector3 originalPos;
 	private Vector3 offset;
 
-	public Vector3 initialScale, originalScale;
+	private Vector3 originalPosition;
+
+	private Vector3 onSlotScale, originalScale;
 
 	// Bools
 	private bool dragging = false;
 	private bool collMirror = false;
-	private bool isMouseDown = false;
 
 	public bool onSlot = false;
 
@@ -40,263 +37,180 @@ public class Gem : MonoBehaviour
 	// Floats
 	private float dist;
 
-	// Use this for initialization
-	void Start ()
-	{
-		// Checks for touch if no touch is available uses mouse
-		if (Input.touchSupported) 
-		{
-			interfaceType = (int) Global.Interface.Touch;
-		} 
-		else 
-		{
-			interfaceType = (int) Global.Interface.Mouse;
-		}
+	//Camera
+	Camera cam;
 
-		layerMask = ~ (1 << LayerMask.NameToLayer(Global.LAYER_POWER_GEM));
-		initialScale = transform.localScale;
-		originalPos = transform.position;
+	//SpriteRenderer
+	SpriteRenderer mySprite;
+
+    private void OnEnable()
+    {
+		InputManager.Instance.Pressed += OnGemPressed;
+		InputManager.Instance.Held += OnGemHeld;
+		InputManager.Instance.Released += OnGemReleased;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.Pressed -= OnGemPressed;
+        InputManager.Instance.Held -= OnGemHeld;
+        InputManager.Instance.Released -= OnGemReleased;
+    }
+
+    // Use this for initialization
+    void Start ()
+	{
+		cam = Camera.main;
+		mySprite = GetComponent<SpriteRenderer>();
+        layerMask = ~ (1 << LayerMask.NameToLayer(Global.LAYER_POWER_GEM));
 		originalScale = transform.localScale;
-		OnSelectPar.SetActive (false);
+		onSlotScale = originalScale / 1.6f;
+		originalPosition = transform.position;
+        OnSelectPar.SetActive (false);
 		PutGemInMirror ();
 	}
 
-	/// <summary>
-	/// Update() is where the dragging system installed and managed.
-	/// </summary>
-	void Update ()
+    /// <summary>
+    /// Handles the case when Gem is pressed by touch or mouse
+    /// </summary>
+    void OnGemPressed(Vector3 position)
 	{
-		//TODO:[what gems they pick up]
-		//TODO:[how many taps the player spend]
-		if (Global.isPaused)
-			return;
+        if (Global.isPaused)
+            return;
 
-		Vector3 v3, pos;
+        RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(position), Vector2.zero, Mathf.Infinity, layerMask);
 
-		switch (interfaceType) 
+		// Handle collisions between raycast and gameobjects
+		if (hit && (hit.collider.gameObject == gameObject))
 		{
-		// Handle touch
-		case (int) Global.Interface.Touch:
-
-			Touch touch;
-
-			// No touch happening
-			if (Input.touchCount <= 0)
+			if (onSlot && MirrorGO != null)
 			{
-				SetNoInput();
-			} 
-			// Something is being touched
-			else
-			{
-				touch = Input.touches[0];
-				pos = touch.position;
-
-				// Handling case of input touch begins
-				if (touch.phase == TouchPhase.Began)
-				{
-					RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(touch.position), Vector2.zero, Mathf.Infinity, layerMask);
-
-					// Handle collisions between raycast and gameobjects
-					if (hit && (hit.collider.gameObject == gameObject))
-					{
-						//if (Global.isDragging == false)
-						//as_PickGem.Play ();
-
-						if (onSlot && MirrorGO != null)
-						{
-							AnalyticsSingleton.Instance.gemHistory.AddAction (MirrorGO.GetComponent<Mirror> ().name, Global.ANALYTICS_ACTION_REMOVED, gameObject.name, Time.time);
-							onSlot = false;
-							MirrorGO.GetComponent<Mirror>().slots--;
-							MirrorGO.GetComponent<Mirror>().pickerNumber -= gemAngle;
-							MirrorGO.GetComponent<Mirror>().ReleasePosition(gameObject);
-							Global.antiCheater = 2;
-						}
-
-						toDrag = hit.transform;
-						dist = hit.transform.position.z - Camera.main.transform.position.z;
-						v3 = new Vector3(pos.x, pos.y, dist);
-						v3 = Camera.main.ScreenToWorldPoint(v3);
-						offset = toDrag.position - v3;
-						dragging = true;
-						Global.isDragging = true;
-						OnSelectPar.SetActive(true);
-					}
-				}
-
-				// Handling phase of input touch is moved
-				if (dragging && touch.phase == TouchPhase.Moved)
-				{
-					v3 = new Vector3(Input.mousePosition.x, Input.mousePosition.y, dist);
-					v3 = Camera.main.ScreenToWorldPoint(v3);
-					toDrag.position = v3 + offset;
-				}
-
-				// Handling phase of input touch ended or cancelled
-				if (dragging && (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled))
-				{
-					SetNoInput();
-
-					// Gem swap function
-					if (gemToBeSwapped != null)
-					{
-						AnalyticsSingleton.Instance.gemHistory.AddAction (MirrorGO.GetComponent<Mirror> ().name, Global.ANALYTICS_ACTION_REMOVED, gemToBeSwapped.GetComponent<Gem> ().name, Time.time);
-						gemToBeSwapped.GetComponent<Gem>().ReleaseThisGem();
-					}
-
-					// Handling collisions with mirror
-					if (collMirror && MirrorGO != null)
-					{
-						if (MirrorGO.GetComponent<Mirror>().slots + 1 > MirrorGO.GetComponent<Mirror>().maximumSlots)
-						{
-							onSlot = false;
-						}
-						else
-						{
-							AnalyticsSingleton.Instance.gemHistory.AddAction (MirrorGO.GetComponent<Mirror> ().name, Global.ANALYTICS_ACTION_PLACED, gameObject.name, Time.time);
-							MirrorGO.GetComponent<Mirror>().slots++;
-							onSlot = true;
-							//fetch the position of gem
-							slotPosition = MirrorGO.GetComponent<Mirror>().ArrangePosition(gameObject);
-							MirrorGO.GetComponent<Mirror>().pickerNumber += gemAngle;
-							//set anti-cheater conuter to 2
-							Global.antiCheater = 2;
-						}
-					}
-				}
+				AnalyticsSingleton.Instance.gemHistory.AddAction(MirrorGO.name, Global.ANALYTICS_ACTION_REMOVED, gameObject.name, Time.time);
+				onSlot = false;
+				MirrorGO.slots--;
+				MirrorGO.pickerNumber -= gemAngle;
+				MirrorGO.ReleasePosition(gameObject);
+				Global.antiCheater = 2;
 			}
 
-			break;
+			toDrag = hit.transform;
+			dist = hit.transform.position.z - cam.transform.position.z;
+			Vector3 v3 = new(position.x, position.y, dist);
+			v3 = cam.ScreenToWorldPoint(v3);
+			offset = toDrag.position - v3;
+			dragging = true;
+			Global.isDragging = true;
+			OnSelectPar.SetActive(true);
 
-			// Handle Mouse
-		default:
-
-			// Handling mouse lifted
-			if (Input.GetMouseButtonUp(0))
-			{
-				isMouseDown = false;
-
-				if (dragging)
-				{
-					// Gem swap function
-					if (gemToBeSwapped != null)
-					{
-						AnalyticsSingleton.Instance.gemHistory.AddAction (MirrorGO.GetComponent<Mirror> ().name, Global.ANALYTICS_ACTION_REMOVED, gemToBeSwapped.GetComponent<Gem> ().name, Time.time);
-						gemToBeSwapped.GetComponent<Gem>().ReleaseThisGem();
-					}
-
-					// Handling collisions with mirror
-					if (collMirror && MirrorGO != null)
-					{
-						if (MirrorGO.GetComponent<Mirror>().slots + 1 > MirrorGO.GetComponent<Mirror>().maximumSlots)
-						{
-							onSlot = false;
-						}
-						else
-						{
-							AnalyticsSingleton.Instance.gemHistory.AddAction (MirrorGO.GetComponent<Mirror> ().name, Global.ANALYTICS_ACTION_PLACED, gameObject.name, Time.time);
-							MirrorGO.GetComponent<Mirror>().slots++;
-							onSlot = true;
-							//fetch the position of gem
-							slotPosition = MirrorGO.GetComponent<Mirror>().ArrangePosition(gameObject);
-							MirrorGO.GetComponent<Mirror>().pickerNumber += gemAngle;
-							//set anti-cheater conuter to 2
-							Global.antiCheater = 2;
-						}
-					}
-				}
-
-				SetNoInput();
-			} 
-
-			// Handling left click press but not lifted
-			if (Input.GetMouseButtonDown(0))
-			{
-				isMouseDown = true;
-				pos = Input.mousePosition; 
-
-				if (isMouseDown)
-				{
-					RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, layerMask);
-
-					// Handle collisions between raycast and gameobjects
-					if (hit && (hit.collider.gameObject == gameObject))
-					{
-						//if (Global.isDragging == false)
-						//as_PickGem.Play ();
-
-						if (onSlot && MirrorGO != null)
-						{
-							AnalyticsSingleton.Instance.gemHistory.AddAction (MirrorGO.GetComponent<Mirror> ().name, Global.ANALYTICS_ACTION_REMOVED, gameObject.name, Time.time);
-							onSlot = false;
-							MirrorGO.GetComponent<Mirror>().slots--;
-							MirrorGO.GetComponent<Mirror>().pickerNumber -= gemAngle;
-							MirrorGO.GetComponent<Mirror>().ReleasePosition(gameObject);
-							Global.antiCheater = 2;
-						}
-
-						toDrag = hit.transform;
-						dist = hit.transform.position.z - Camera.main.transform.position.z;
-						v3 = new Vector3(pos.x, pos.y, dist);
-						v3 = Camera.main.ScreenToWorldPoint(v3);
-						offset = toDrag.position - v3;
-						dragging = true;
-						Global.isDragging = true;
-						OnSelectPar.SetActive(true);
-					}
-				}
-			}
-
-			// Handling dragging of gem that is pressed
-			if (isMouseDown && dragging)
-			{
-				v3 = new Vector3(Input.mousePosition.x, Input.mousePosition.y, dist);
-				v3 = Camera.main.ScreenToWorldPoint(v3);
-				toDrag.position = v3 + offset;
-			}
-
-			break;
-		}
-
-		if (onSlot) 
-		{
-			transform.position = new Vector3 (slotPosition.x, slotPosition.y, transform.position.z);
-			transform.localScale = originalScale / 1.6f;
-		} 
-		else 
-		{
-			transform.localScale = originalScale;
-
-			if (!dragging) 
-			{
-				//gem limitation
-				//transform.position = Vector3.Lerp (transform.position, originalPos, Time.deltaTime);
-				//transform.position = new Vector3(0,0,-1f);
-				transform.position = new Vector3(Mathf.Clamp(transform.position.x, -6.24f, 6.24f), Mathf.Clamp(transform.position.y, -3.4f, 5.4f), transform.position.z);
-			}
-
-			originalScale = initialScale;
-		}
-
-		// Make the gem viewable above others when it is being dragged
-		if (dragging) 
-		{
-			GetComponent<SpriteRenderer> ().sortingOrder = 11;
-		} 
-		else 
-		{
-			GetComponent<SpriteRenderer> ().sortingOrder = 10;
 		}
 	}
 
+    /// <summary>
+    /// Handles the case when Gem is held and moved by touch or mouse
+    /// </summary>
+    void OnGemHeld(Vector3 position)
+	{
+        if (Global.isPaused)
+            return;
+
+        // Handling phase of input touch is moved
+        if (dragging)
+        {
+            Vector3 v3 = new(position.x, position.y, dist);
+            v3 = cam.ScreenToWorldPoint(v3);
+            toDrag.position = v3 + offset;
+            mySprite.sortingOrder = 11;
+        }
+    }
+
+    /// <summary>
+    /// Handles the case when Gem is released by touch or mouse
+    /// </summary>
+    void OnGemReleased()
+	{
+		if (Global.isPaused)
+			return;
+
+		if (dragging)
+		{
+			SetNoInput();
+
+			// Gem swap function
+			if (gemToBeSwapped != null && MirrorGO != null)
+			{
+				AnalyticsSingleton.Instance.gemHistory.AddAction(MirrorGO.name, Global.ANALYTICS_ACTION_REMOVED, gemToBeSwapped.name, Time.time);
+				gemToBeSwapped.ReleaseThisGem();
+				gemToBeSwapped = null;
+			}
+
+			// Handling collisions with mirror
+			if (collMirror && MirrorGO != null)
+			{
+				if (MirrorGO.slots + 1 > MirrorGO.maximumSlots)
+				{
+					onSlot = false;
+				}
+				else
+				{
+					AnalyticsSingleton.Instance?.gemHistory.AddAction(MirrorGO.name, Global.ANALYTICS_ACTION_PLACED, gameObject.name, Time.time);
+					MirrorGO.slots++;
+					onSlot = true;
+					//fetch the position of gem
+					slotPosition = MirrorGO.ArrangePosition(gameObject);
+					MirrorGO.pickerNumber += gemAngle;
+					//set anti-cheater conuter to 2
+					Global.antiCheater = 2;
+
+					if (gemToBeSwapped != null)
+						gemToBeSwapped = null;
+				}
+			}
+			ScaleOnPlacement();
+		}
+
+        if (!dragging && IsOffScreen())
+        {
+            transform.position = originalPosition;
+        }
+    }
+
+    /// <summary>
+    /// Scales the gem as per where it is placed
+    /// </summary>
+    void ScaleOnPlacement()
+	{
+        if (onSlot)
+        {
+            transform.position = new Vector3(slotPosition.x, slotPosition.y, transform.position.z);
+            transform.localScale = onSlotScale;
+        }
+        else
+        {
+            transform.localScale = originalScale;
+        }
+    }
+
+
 	/// <summary>
-	/// Sets the world state to no input.
+	/// Checks if gem is placed outside the screen view
 	/// </summary>
-	private void SetNoInput()
+    bool IsOffScreen()
+    {
+        Vector3 viewportPos = cam.WorldToViewportPoint(transform.position);
+        return viewportPos.x < 0 || viewportPos.x > 1 || viewportPos.y < 0 || viewportPos.y > 1;
+
+    }
+
+    /// <summary>
+    /// Sets the world state to no input.
+    /// </summary>
+    private void SetNoInput()
 	{
 		dragging = false; 
 		Global.isDragging = false;
 		OnSelectPar.SetActive (false);
-	}
+        mySprite.sortingOrder = 10;
+    }
 
 	/// <summary>
 	/// Puts the gem in slot and ask mirror to auto allocate the gem
@@ -305,20 +219,23 @@ public class Gem : MonoBehaviour
 	{
 		if (initialMirror != null) 
 		{
-			if (initialMirror.GetComponent<Mirror> ().slots + 1 > initialMirror.GetComponent<Mirror> ().maximumSlots) 
+			Mirror initMirror = initialMirror.GetComponent<Mirror>();
+			if (initMirror.slots + 1 > initMirror.maximumSlots) 
 			{
 				onSlot = false;
 			} 
 			else 
 			{
-				initialMirror.GetComponent<Mirror> ().slots++;
+				initMirror.slots++;
 				onSlot = true;
 				//fetch the position of gem
-				slotPosition = initialMirror.GetComponent<Mirror> ().ArrangePosition (gameObject);
-				initialMirror.GetComponent<Mirror> ().pickerNumber += gemAngle;
+				slotPosition = initMirror.ArrangePosition (gameObject);
+				initMirror.pickerNumber += gemAngle;
 			}
-		}
-	}
+
+            ScaleOnPlacement();
+        }
+    }
 
 	/// <summary>
 	/// gem got released from its current slot
@@ -328,68 +245,69 @@ public class Gem : MonoBehaviour
 		if (onSlot && MirrorGO != null) 
 		{
 			onSlot = false;
-			MirrorGO.GetComponent<Mirror> ().slots--;
-			MirrorGO.GetComponent<Mirror> ().pickerNumber -= gemAngle;
-			MirrorGO.GetComponent<Mirror> ().ReleasePosition (gameObject);
+			MirrorGO.slots--;
+			MirrorGO.pickerNumber -= gemAngle;
+			MirrorGO.ReleasePosition (gameObject);
 
 			if (!dragging) 
 			{
 				transform.position += new Vector3 (0f, -1f, 0f);
 			}
+			ScaleOnPlacement();
 		}
 	}
 
 	void OnTriggerEnter2D (Collider2D coll)
 	{
 		// behavior of entering mirror
-		if (coll.gameObject.tag == Global.TAG_MIRROR_COLLIDER) 
+		if (coll.gameObject.CompareTag(Global.TAG_MIRROR_COLLIDER)) 
 		{
 			collMirror = true;
-			MirrorGO = coll.gameObject;
-		}
-	}
+			MirrorGO = coll.gameObject.GetComponent<Mirror>();
+        }
 
-	void OnTriggerStay2D (Collider2D coll)
-	{
-		// behavior of hovering on a mirror
-		if (coll.gameObject.tag == Global.TAG_MIRROR_COLLIDER) 
+		//the gem on slot checks if the interacting gem can be swapped
+        if (coll.gameObject.CompareTag(Global.TAG_DRAGGABLE) && onSlot)
 		{
-			collMirror = true;
-			MirrorGO = coll.gameObject;
-		}
-		// behavior of hovering on other gems
-		if (coll.gameObject.tag == Global.TAG_DRAGGABLE && coll.gameObject.GetComponent<Gem>().onSlot) 
-		{
-			if (Vector2.Distance (coll.gameObject.transform.position, gameObject.transform.position) < 0.3f) 
+			if (coll.gameObject.TryGetComponent<Gem>(out var interactedGem))
 			{
-				gemToBeSwapped = coll.gameObject;
-				gemToBeSwapped.GetComponent<Gem>().originalScale = gemToBeSwapped.GetComponent<Gem>().initialScale * 1.6f;
-			}
-
-			if (gemToBeSwapped == coll.gameObject && Vector2.Distance (coll.gameObject.transform.position, gameObject.transform.position) >= 0.3f) 
-			{
-				gemToBeSwapped.GetComponent<Gem> ().originalScale = gemToBeSwapped.GetComponent<Gem> ().initialScale;
-				gemToBeSwapped = null;
+				if (!interactedGem.onSlot)
+				{
+					if (interactedGem.gemToBeSwapped != null && interactedGem.gemToBeSwapped.Equals(this))
+					{
+						ScaleOnPlacement();
+					}
+					else
+					{
+						transform.localScale = originalScale * 1.2f;
+						interactedGem.gemToBeSwapped = this;
+					}
+				}
 			}
 		}
-	}
 
-	void OnTriggerExit2D (Collider2D coll)
-	{
-		// behavior of exiting from mirror
-		if (coll.gameObject.tag == Global.TAG_MIRROR_COLLIDER)
-		{
-			collMirror = false;
-			MirrorGO = null;
-		}
-		// behavior of exiting from other gems
-		if (coll.gameObject.tag == Global.TAG_DRAGGABLE && coll.gameObject.GetComponent<Gem>().onSlot) 
-		{
-			if (gemToBeSwapped = coll.gameObject) 
-			{
-				gemToBeSwapped.GetComponent<Gem> ().originalScale = gemToBeSwapped.GetComponent<Gem> ().initialScale;
-				gemToBeSwapped = null;
-			}
-		}
-	}
+    }
+
+    private void OnTriggerExit2D(Collider2D coll)
+    {
+        if (coll.gameObject.CompareTag(Global.TAG_MIRROR_COLLIDER))
+        {
+            collMirror = false;
+            MirrorGO = null;
+        }
+
+        //the gem on slot checks if the interacting gem has stopped interacting
+        if (coll.gameObject.CompareTag(Global.TAG_DRAGGABLE) && onSlot)
+        {
+            if (coll.gameObject.TryGetComponent<Gem>(out var interactedGem))
+            {
+                if (!interactedGem.onSlot)
+                {
+                    ScaleOnPlacement();
+					interactedGem.gemToBeSwapped = null;
+                }
+            }
+        }
+    }
+
 }

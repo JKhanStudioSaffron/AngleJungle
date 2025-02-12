@@ -104,11 +104,7 @@ MonoBehaviour:
   gemAngle: 15
   as_PickGem: {fileID: 82208672827205672}
   initialMirror: {fileID: 0}
-  gemToBeSwapped: {fileID: 0}
   OnSelectPar: {fileID: 1475838518171510}
-  MirrorGO: {fileID: 0}
-  initialScale: {x: 0, y: 0, z: 0}
-  originalScale: {x: 0, y: 0, z: 0}
   onSlot: 0
 --- !u!50 &50547118951336248
 Rigidbody2D:
@@ -181,10 +177,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -2.0007384, y: -0.279945}
-      - {x: 0.022744479, y: -2.274372}
-      - {x: 2.1419916, y: -0.1278273}
-      - {x: -0.06433222, y: 2.1638994}
+    - - {x: -0.85085046, y: -0.14852858}
+      - {x: 0.039172098, y: -1.2066188}
+      - {x: 0.8442619, y: -0.04569234}
+      - {x: -0.047905296, y: 1.1454272}
   m_UseDelaunayMesh: 0
 --- !u!1 &1430268558361242
 GameObject:

@@ -26,7 +26,7 @@ public class BtnTxtStage : MonoBehaviour {
 		downPos = originPos - new Vector3 (0, 0.03f, 0);
 	}
 
-	// Update is called once per frame
+
 	void CheckButtonState(bool state) { 
 		if (!state)
 			gameObject.SetActive (false);
