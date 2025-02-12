@@ -43,8 +43,6 @@ public class GameManager : MonoBehaviour
 		isPauseMenuOn = false;
 		isLevelFinished = false;
 		StartCoroutine (AntiCheater());
-		//SaveLoad.data = new PlayerData (7, 0, false);
-		//SaveLoad.Save ();
 		mainCamera.GetComponent<RapidBlurEffect> ().enabled = false;
 		canvasInGame.SetActive (true);
 		canvasPause.SetActive (false);
@@ -55,34 +53,27 @@ public class GameManager : MonoBehaviour
 		protractors = GameObject.FindGameObjectsWithTag (Global.TAG_PROTRACTOR);
 
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    private void OnEnable()
+    {
+		InputManager.Instance.Pressed += GoToNextLevel;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.Pressed -= GoToNextLevel;
+    }
+
+    void GoToNextLevel(Vector3 position)
 	{
-        // Handling touch of go button
-		if (Input.touchCount > 0 && (Input.GetTouch (0).phase == TouchPhase.Began || Input.GetTouch (0).phase == TouchPhase.Moved)) 
-		{
-			RaycastHit2D hit = Physics2D.Raycast (Camera.main.ScreenToWorldPoint (Input.GetTouch (0).position), Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(position), Vector2.zero);
 
-			if (hit && hit.collider != null && hit.collider.tag == Global.TAG_GO_BUTTON && !isPauseMenuOn) 
-			{
-				goButton_as.Play ();
-				Win ();
-			}
-		}
-
-        // Handling left click of go button
-        if (Input.GetMouseButtonDown(0))
+        if (hit && hit.collider != null && hit.collider.tag == Global.TAG_GO_BUTTON && !isPauseMenuOn)
         {
-            RaycastHit2D hit = Physics2D.Raycast (Camera.main.ScreenToWorldPoint (Input.mousePosition), Vector2.zero);
-
-            if (hit && hit.collider != null && hit.collider.tag == Global.TAG_GO_BUTTON && !isPauseMenuOn) 
-            {
-                goButton_as.Play ();
-                Win ();
-            }
+            goButton_as.Play();
+            Win();
         }
-	}
+    }
 
 	/// <summary>
 	/// Shows the pause menu.

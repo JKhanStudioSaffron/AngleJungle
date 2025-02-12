@@ -4,6 +4,7 @@ using System.Globalization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
+using DG.Tweening;
 
 [System.Serializable]
 public class SlotUnit
@@ -43,9 +44,6 @@ public class Mirror : MonoBehaviour
 	public GameObject toggleCollider;
 
 	public GameObject TutorialHand;
-	Vector2 shootingDirection = Vector2.zero;
-	Vector2 CentralPoint = Vector2.zero;
-	float angle = 0f;
 	bool isActivated = false;
 	public List<SlotUnit> slotList;
 	private int countDown=3;
@@ -59,26 +57,48 @@ public class Mirror : MonoBehaviour
 	private bool isProtractorOn = false;
 	private Vector3 proOriginalScale;
 
-	/// <summary>
-	/// Initialize the slot system, and each slot's position on awake.
-	/// </summary>
-	void Awake ()
+    private void OnEnable()
+    {
+		InputManager.Instance.Pressed += ToggleD;
+    }
+
+    private void OnDisable()
+    {
+        InputManager.Instance.Pressed -= ToggleD;
+    }
+
+    void ToggleD(Vector3 position)
+	{
+        if (Global.isPaused)
+            return;
+
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(position), Vector2.zero);
+
+        // If touched open the protractor
+        if (hit && (hit.collider.gameObject == toggleCollider))
+        {
+            ToggleProtractor();
+        }
+    }
+
+    /// <summary>
+    /// Initialize the slot system, and each slot's position on awake.
+    /// </summary>
+    void Awake ()
 	{
 		sr = GetComponent<SpriteRenderer> ();
 
 		if (!isReceiver) 
 		{
-			isActivated = true;
+			ActiveLight();
 		} 
 		else 
 		{
-			isActivated = false;
+			DeactivateLight();
 			StartCoroutine (CountDown());
 		}
 			
 		Vector2 slotBasePosition = (Vector2)transform.position + new Vector2 (0,-0.48f);
-
-		CentralPoint = transform.position;
 		slotList = new List<SlotUnit> (maximumSlots);
 
 		switch (maximumSlots) {
@@ -127,31 +147,14 @@ public class Mirror : MonoBehaviour
 	/// </summary>
 	void Update ()
 	{
-		//shootingDirection = (Vector2)GyroRotation.transform.up;
 		if (Global.isPaused)
 			return;
-
-		if (!isActivated) 
-		{
-			line.SetActive (false);
-			sectorImage.SetActive (false);
-			Angle_Text.gameObject.SetActive (false);
-			sr.sprite = greyMirrorSp;
-		} 
-		else 
-		{
-			line.SetActive (true);
-			sectorImage.SetActive (true);
-			Angle_Text.gameObject.SetActive (true);
-			sr.sprite = redMirrorSp;
-		}
 
 		Vector2 vect2_tmp = new Vector2 (1, 0); // for text
 		Vector2 vect2_angle = new Vector2 (1, 0); // for angle
 		curLerpTime += Time.deltaTime;
 		float perc = curLerpTime / lerpTime;
 
-		//perc = 1f - Mathf.Cos (perc * Mathf.PI * 0.5f);
 		if (perc > 0.14f) 
 		{
 			perc = 1f;
@@ -161,7 +164,6 @@ public class Mirror : MonoBehaviour
 
 		vect2_tmp = Quaternion.AngleAxis (showNumber / 2, Vector3.forward) * vect2_tmp;
 		sectorImage.GetComponent<TestMesh> ().angleDegree = showNumber;
-		angle = angle_360 (vect2_angle, new Vector2 (-1, 0));
 		vect2_angle = Quaternion.AngleAxis (degreeNumber, Vector3.forward) * vect2_angle;
 
 		line.transform.rotation = Quaternion.LookRotation (vect2_angle);
@@ -176,45 +178,6 @@ public class Mirror : MonoBehaviour
 
 			Angle_Text.gameObject.transform.localPosition = vect2_tmp * 100f;
 		}
-
-		// Handle touch on mirror
-		Touch touch;
-		if (Input.touchCount > 0) 
-		{
-			touch = Input.touches [0];
-
-			if (touch.phase == TouchPhase.Began) 
-			{
-				RaycastHit2D hit = Physics2D.Raycast (Camera.main.ScreenToWorldPoint (touch.position), Vector2.zero);
-
-				// If touched open the protractor
-				if (hit && (hit.collider.gameObject == toggleCollider)) 
-				{
-					ToggleProtractor ();
-				}
-			}
-		}
-
-        // Handle mouse click on mirror
-        else if (Input.GetMouseButtonDown(0)) 
-        {
-            RaycastHit2D hit = Physics2D.Raycast (Camera.main.ScreenToWorldPoint (Input.mousePosition), Vector2.zero);
-
-            // If touched open the protractor
-            if (hit && (hit.collider.gameObject == toggleCollider)) 
-            {
-                ToggleProtractor ();
-            }
-        }
-
-        if (isProtractorOn)
-        {
-            protractor.transform.localScale = Vector3.Lerp(protractor.transform.localScale, proOriginalScale, Time.deltaTime * 10);
-        }
-        else
-        {
-            protractor.transform.localScale = Vector3.Lerp(protractor.transform.localScale, Vector3.zero, Time.deltaTime * 10);
-        }
     }
 
 	/// <summary>
@@ -254,11 +217,13 @@ public class Mirror : MonoBehaviour
 
         if(isProtractorOn)
         {
-            AnalyticsSingleton.Instance.gemHistory.AddAction(GetComponent<Mirror>().name, Global.ANALYTICS_PROTRACTOR_CLOSED, "-1", Time.time);
+			protractor.transform.DOScale(proOriginalScale, 0.5f);
+			AnalyticsSingleton.Instance.gemHistory.AddAction(GetComponent<Mirror>().name, Global.ANALYTICS_PROTRACTOR_CLOSED, "-1", Time.time);
         }
         else
         {
-            AnalyticsSingleton.Instance.gemHistory.AddAction(GetComponent<Mirror>().name, Global.ANALYTICS_PROTRACTOR_OPENED, "-1", Time.time);
+            protractor.transform.DOScale(Vector3.zero, 0.5f);
+			AnalyticsSingleton.Instance.gemHistory.AddAction(GetComponent<Mirror>().name, Global.ANALYTICS_PROTRACTOR_OPENED, "-1", Time.time);
         }
 	}
 
@@ -311,7 +276,13 @@ public class Mirror : MonoBehaviour
 	{
 		isActivated = true;
 		countDown = 3;
-	}
+
+        line.SetActive(true);
+        sectorImage.SetActive(true);
+        Angle_Text.gameObject.SetActive(true);
+        sr.sprite = redMirrorSp;
+
+    }
 
 	/// <summary>
 	/// Deactivates this receiver mirror.
@@ -320,7 +291,12 @@ public class Mirror : MonoBehaviour
 	{
 		isActivated = false;
 		PowerGem.CheckLightActivated?.Invoke(line);
-	}
+
+        line.SetActive(false);
+        sectorImage.SetActive(false);
+        Angle_Text.gameObject.SetActive(false);
+        sr.sprite = greyMirrorSp;
+    }
 
 	/// <summary>
 	/// Counts down to deactivate the light on a receiver mirror.
