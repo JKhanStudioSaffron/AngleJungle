@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerGem : MonoBehaviour {
+public class PowerGem : MonoBehaviour 
+{
 
-	public GameObject door;
 	public GameObject PowerGemParticle;
-	public GameObject mask;
 	public int ActivateNum = 1;
 
 	private Sprite greyPG;
@@ -135,7 +134,7 @@ public class PowerGem : MonoBehaviour {
         {
             PowerGemParticle.SetActive(true);
             sp.sprite = redPG;
-            door.GetComponent<Door>().OpenDoor();
+			GameManager.PuzzleSolved?.Invoke();
         }
         ActivateLightObjects();
     }
@@ -152,10 +151,10 @@ public class PowerGem : MonoBehaviour {
         {
             PowerGemParticle.SetActive(false);
             sp.sprite = greyPG;
-            door.GetComponent<Door>().CloseDoor();
+            GameManager.PuzzleUnSolved?.Invoke();
         }
 
-		ActivateLightObjects();
+        ActivateLightObjects();
     }
 
     /// <summary>

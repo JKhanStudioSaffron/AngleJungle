@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 	public GameObject canvasInGame;
 	public GameObject canvasPause;
 	public GameObject canvasStageClear;
+	public GameObject canvasLastStageClear;
 	public GameObject Player;
 	public GameObject GoButton;
 	public GameObject door;
@@ -31,59 +32,64 @@ public class GameManager : MonoBehaviour
 	private bool isPauseMenuOn = false;
 	bool isLevelFinished = false;
 
-	private float levelStart, levelTime;
+	public static Action PuzzleSolved, PuzzleUnSolved;
+
 
 	// Use this for initialization
-	void Awake ()
+	void Awake()
 	{
 		// Start timing level for analytics
 		AnalyticsSingleton.Instance.levelStart = Time.time;
-		AnalyticsSingleton.Instance.levelName = SceneManager.GetActiveScene ().name;
+		AnalyticsSingleton.Instance.levelName = SceneManager.GetActiveScene().name;
 
 		isPauseMenuOn = false;
 		isLevelFinished = false;
-		StartCoroutine (AntiCheater());
-		mainCamera.GetComponent<RapidBlurEffect> ().enabled = false;
-		canvasInGame.SetActive (true);
-		canvasPause.SetActive (false);
-		canvasStageClear.SetActive (false);
-		GoButton.SetActive (false);
+		StartCoroutine(AntiCheater());
+		mainCamera.GetComponent<RapidBlurEffect>().enabled = false;
+		canvasInGame.SetActive(true);
+		canvasPause.SetActive(false);
+		canvasStageClear.SetActive(false);
+        canvasLastStageClear.SetActive(false);
+		GoButton.SetActive(false);
 		Global.isDragging = false;
 		Global.isPaused = false;
-		protractors = GameObject.FindGameObjectsWithTag (Global.TAG_PROTRACTOR);
+		protractors = GameObject.FindGameObjectsWithTag(Global.TAG_PROTRACTOR);
 
 	}
 
-    private void OnEnable()
-    {
-		InputManager.Instance.Pressed += GoToNextLevel;
-    }
-
-    private void OnDisable()
-    {
-        InputManager.Instance.Pressed -= GoToNextLevel;
-    }
-
-    void GoToNextLevel(Vector3 position)
+	private void OnEnable()
 	{
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(position), Vector2.zero);
+		InputManager.Instance.Pressed += GoToNextLevel;
+		PuzzleSolved += DoorPuzzleSolved;
+		PuzzleUnSolved += DoorPuzzleUnsolved;
+	}
 
-        if (hit && hit.collider != null && hit.collider.tag == Global.TAG_GO_BUTTON && !isPauseMenuOn)
-        {
-            goButton_as.Play();
-            Win();
-        }
-    }
+	private void OnDisable()
+	{
+		InputManager.Instance.Pressed -= GoToNextLevel;
+		PuzzleSolved -= DoorPuzzleSolved;
+		PuzzleUnSolved -= DoorPuzzleUnsolved;
+	}
+
+	void GoToNextLevel(Vector3 position)
+	{
+		RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(position), Vector2.zero);
+
+		if (hit && hit.collider != null && hit.collider.tag == Global.TAG_GO_BUTTON && !isPauseMenuOn)
+		{
+			goButton_as.Play();
+			Win();
+		}
+	}
 
 	/// <summary>
 	/// Shows the pause menu.
 	/// </summary>
-	public void ShowPauseMenu ()
+	public void ShowPauseMenu()
 	{
-		mainCamera.GetComponent<RapidBlurEffect> ().enabled = true;
-		canvasPause.SetActive (true);
-		canvasInGame.SetActive (false);
-		//Global.isPaused = true;
+		mainCamera.GetComponent<RapidBlurEffect>().enabled = true;
+		canvasPause.SetActive(true);
+		canvasInGame.SetActive(false);
 		isPauseMenuOn = true;
 	}
 
@@ -92,36 +98,40 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	public void PlayButtonClickSound()
 	{
-		MusicManager.Instance.PlayClickButton ();
+		MusicManager.Instance.PlayClickButton();
 	}
 
 	/// <summary>
 	/// Show congrat UI when you complete this level
 	/// </summary>
-	public void ShowStageClear ()
+	public void ShowStageClear()
 	{
-		music_win.Play ();
-		mainCamera.GetComponent<RapidBlurEffect> ().enabled = true;
-		canvasStageClear.SetActive (true);
-		canvasInGame.SetActive (false);
-		canvasPause.SetActive (false);
+		music_win.Play();
+		mainCamera.GetComponent<RapidBlurEffect>().enabled = true;
+		if(LevelManager.LevelIndex == LevelManager.TotalLevels)
+			canvasLastStageClear.SetActive(true);
+		else
+			canvasStageClear.SetActive(true);
+
+		canvasInGame.SetActive(false);
+		canvasPause.SetActive(false);
 		Global.isPaused = true;
 		Invoke(nameof(RefreshText), 0.5f);
-    }
+	}
 
 	void RefreshText()
 	{
-        RTLTextFixer.RefreshText?.Invoke();
-        TextResize.ResizeText?.Invoke(AccessibilitySaveObject.Instance.OptionsData.FontMultiplier);
-    }
+		RTLTextFixer.RefreshText?.Invoke();
+		TextResize.ResizeText?.Invoke(AccessibilitySaveObject.Instance.OptionsData.FontMultiplier);
+	}
 
 	/// <summary>
 	/// Shows the treasure if this level is trophy level
 	/// </summary>
 	public void ShowTreasure()
 	{
-		music_win.Play ();
-		StartCoroutine (GoToTreasureRoom());
+		music_win.Play();
+		StartCoroutine(GoToTreasureRoom());
 	}
 
 	/// <summary>
@@ -130,8 +140,8 @@ public class GameManager : MonoBehaviour
 	/// <returns>The to treasure room.</returns>
 	IEnumerator GoToTreasureRoom()
 	{
-		yield return new WaitForSeconds (3.6f);
-		SceneManager.LoadScene (Global.SCENE_TREASURE);
+		yield return new WaitForSeconds(3.6f);
+		SceneManager.LoadScene(Global.SCENE_TREASURE);
 	}
 
 	/// <summary>
@@ -139,144 +149,135 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	IEnumerator AntiCheater()
 	{
-		while (true) 
+		while (true)
 		{
-			yield return new WaitForSeconds (1);
-			if (Global.antiCheater > 0) 
+			yield return new WaitForSeconds(1);
+			if (Global.antiCheater > 0)
 			{
 				Global.antiCheater--;
 			}
 		}
 	}
 
-	public void SwitchBgmToWin()
-	{
-		//music_win.Play ();
-	}
-
 	/// <summary>
 	/// Hides the pause menu.
 	/// </summary>
-	public void HidePauseMenu ()
+	public void HidePauseMenu()
 	{
-		mainCamera.GetComponent<RapidBlurEffect> ().enabled = false;
-		canvasPause.SetActive (false);
-		canvasInGame.SetActive (true);
-		//if(!isLevelFinished)
-			//Global.isPaused = false;
+		mainCamera.GetComponent<RapidBlurEffect>().enabled = false;
+		canvasPause.SetActive(false);
+		canvasInGame.SetActive(true);
 		isPauseMenuOn = false;
 	}
 
 	/// <summary>
 	/// Puzzle solved
 	/// </summary>
-	public void DoorOpened ()
+	public void DoorPuzzleSolved()
 	{
-		if (!isStartToWinCalled) 
+		if (!isStartToWinCalled)
 		{
 			// when the puzzle solved, we call the coroutine to win, but it's not really the winning.
 			// it can still be interupted by DoorClosed() method.
-			countToWin = StartCoroutine (CountToWin ());
+			countToWin = StartCoroutine(CountToWin());
 			isStartToWinCalled = true;
 			//disable hand click tutorial
-			GameObject handClickTutorial = GameObject.FindGameObjectWithTag (Global.TAG_HAND_TUTORIAL);
+			GameObject handClickTutorial = GameObject.FindGameObjectWithTag(Global.TAG_HAND_TUTORIAL);
 
-			if(handClickTutorial != null)
-				handClickTutorial.SetActive (false);
+			if (handClickTutorial != null)
+				handClickTutorial.SetActive(false);
 		}
 	}
-		
+
 	/// <summary>
 	/// Puzzle solved status reverted, interuppt DoorOpen()
 	/// </summary>
-	public void DoorClosed ()
+	public void DoorPuzzleUnsolved()
 	{
-		
 		if (countToWin != null)
-			StopCoroutine (countToWin);
+			StopCoroutine(countToWin);
 		isStartToWinCalled = false;
-		GoButton.SetActive (false);
+		GoButton.SetActive(false);
 	}
 
 	/// <summary>
 	/// Restart the level
 	/// </summary>
-	public void ReloadCurrentScene ()
+	public void ReloadCurrentScene()
 	{
-		Scene scene = SceneManager.GetActiveScene ();
-		SceneManager.LoadScene (scene.name);
+		Scene scene = SceneManager.GetActiveScene();
+		SceneManager.LoadScene(scene.name);
 	}
 
 	/// <summary>
 	/// Loads the next level.
 	/// </summary>
-	public void LoadNextScene ()
+	public void LoadNextScene()
 	{
-		Scene scene = SceneManager.GetActiveScene ();
-		SceneManager.LoadScene (scene.buildIndex + 1);
+		LevelManager.LevelIndex++;
+		Scene scene = SceneManager.GetActiveScene();
+		SceneManager.LoadScene(scene.buildIndex);
 	}
 
 	/// <summary>
 	/// Loads the map scene.
 	/// </summary>
-	public void LoadHomeScene ()
+	public void LoadHomeScene()
 	{
-		SceneManager.LoadScene (Global.SCENE_MAP);
+		SceneManager.LoadScene(Global.SCENE_MAP);
 	}
 
 	/// <summary>
 	/// Loads the trophy room scene.
 	/// </summary>
-	public void LoadTreasureScene ()
+	public void LoadTreasureScene()
 	{
-		SceneManager.LoadScene (Global.SCENE_TREASURE);
+		SceneManager.LoadScene(Global.SCENE_TREASURE);
 	}
 
 	/// <summary>6
 	/// Show congrat UI when you complete this level
 	/// </summary>
-	public void StageClear ()
+	public void StageClear()
 	{
-		ShowStageClear ();
+		ShowStageClear();
 	}
 
 	/// <summary>
 	/// Real winning
 	/// The little character started walking towards the chest box
 	/// </summary>
-	void Win ()
+	void Win()
 	{
-		GoButton.SetActive (false);
-		canvasInGame.SetActive (false);
-		canvasPause.SetActive (false);
-		mainCamera.GetComponent<RapidBlurEffect> ().enabled = false;
+		GoButton.SetActive(false);
+		canvasInGame.SetActive(false);
+		canvasPause.SetActive(false);
+		mainCamera.GetComponent<RapidBlurEffect>().enabled = false;
 		Global.isPaused = true;
-		Player.GetComponent<Player>().Win ();
+		Player.GetComponent<Player>().Win();
 	}
 
 	/// <summary>
 	/// Counts to Win().
 	/// </summary>
 	/// <returns>The to window.</returns>
-	IEnumerator CountToWin ()
+	IEnumerator CountToWin()
 	{
-		yield return new WaitForSeconds (2.4f);
-		GoButton.SetActive (true);
-		complete_level.Play ();
+		yield return new WaitForSeconds(2.4f);
+		GoButton.SetActive(true);
+		complete_level.Play();
 		Global.isPaused = true;
 		isLevelFinished = true;
-		door.GetComponent<Door> ().DoorOpened ();
-		Player.GetComponent<Player> ().FeelHappy ();
+		door.GetComponent<Door>().DoorOpened();
+		Player.GetComponent<Player>().FeelHappy();
 
 		// Calculate level time and send to analytics
 		AnalyticsSingleton.Instance.levelEnd = Time.time;
 
-		Mirror[] mirrors = ((Mirror[]) GameObject.FindObjectsOfType (typeof(Mirror)));
-		AnalyticsSingleton.Instance.gemEndState.BuildGemEndState (mirrors.ToList());
-		AnalyticsSingleton.Instance.CalculateLevelTime ();
-		//AnalyticsSingleton.Instance.gemEndState.DebugPrint ();
-		//AnalyticsSingleton.Instance.DebugPrint();
-		AnalyticsSingleton.Instance.DispatchData ();
+		Mirror[] mirrors = ((Mirror[])GameObject.FindObjectsOfType(typeof(Mirror)));
+		AnalyticsSingleton.Instance.gemEndState.BuildGemEndState(mirrors.ToList());
+		AnalyticsSingleton.Instance.CalculateLevelTime();
+		AnalyticsSingleton.Instance.DispatchData();
 	}
 
 	/// <summary>
@@ -284,52 +285,21 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	public void ToggleAllProtractors()
 	{
-		if (isProtractorOn) 
+		if (isProtractorOn)
 		{
-			foreach (GameObject pro in protractors) 
+			foreach (GameObject pro in protractors)
 			{
-				pro.SetActive (false);
+				pro.SetActive(false);
 			}
-		} 
-		else 
+		}
+		else
 		{
-			foreach (GameObject pro in protractors) 
+			foreach (GameObject pro in protractors)
 			{
-				pro.SetActive (true);
+				pro.SetActive(true);
 			}
 		}
 
 		isProtractorOn = !isProtractorOn;
-	}
-
-	/// <summary>
-	/// Used for debugging, cheat buttons
-	/// </summary>
-	void OnGUI ()
-	{
-//		if (GUI.Button (new Rect (10, 10, 70, 70), "Reload")) {
-//			ReloadCurrentScene ();
-//		}
-
-//		if (GUI.Button (new Rect (10, 100, 70, 70), "Save")) {
-//			Save ();
-//		}
-//
-//		if (GUI.Button (new Rect (10, 190, 70, 70), "Load")) {
-//			Load ();
-//		}
-//
-//		GUI.Label (new Rect(10,300,100,60),"Coins: "+coinsAmount);
-//
-//		if (GUI.Button (new Rect (10, 400, 70, 70), "AddCoin")) {
-//			coinsAmount++;
-//		}
-//
-//		if (GUI.Button (new Rect (10, 500, 70, 70), "LoseCoin")) {
-//			coinsAmount--;
-//		}
-//		if (GUI.Button (new Rect (10, 500, 130, 80), "Hint")) {
-//			ToggleProtractor ();
-//		}
 	}
 }
