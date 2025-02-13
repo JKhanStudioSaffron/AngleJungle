@@ -2,6 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Defines level index ranges and specific level indices.
+/// </summary>
+[System.Serializable]
+public class LevelIndicesSetup
+{
+    [Range(1, 30)]
+    public int startLevelIndex;
+    [Range(1, 30)]
+    public int endingLevelIndex;
+    public List<int> OtherLevelIndices = new();
+}
+
+/// <summary>
+/// Associates background sprites with specific level indices.
+/// </summary>
+[System.Serializable]
+public class LevelsBgSetup
+{
+    public Sprite BgSprite;
+    public LevelIndicesSetup LevelIndices;
+}
+
+/// <summary>
+/// Stores player spawn positions for different level indices.
+/// </summary>
+[System.Serializable]
+public class PlayerPosition
+{
+    public Transform PlayerPositionInLevel;
+    public LevelIndicesSetup LevelIndices;
+}
+
 public class Global
 {
 	public static bool isDragging=false;
@@ -26,6 +59,7 @@ public class Global
 	public const string SCENE_MAP = "StageNew";
 	public const string SCENE_TREASURE = "Treasure";
 	public const string SCENE_START = "Start";
+	public const string SCENE_LEVEL = "Level";
 
     // Animation strings
     public const string ANIMATION_HAPPY = "Happy";

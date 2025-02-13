@@ -9,8 +9,7 @@ public class LevelLabel : MonoBehaviour {
     // Use this for initialization
 	void Start () 
     {
-		Scene scene = SceneManager.GetActiveScene ();
-		int levelIndex = scene.buildIndex - 1;
+		int levelIndex = LevelManager.LevelIndex;
 		
 		string localizedIndex = LocalizedNumberManager.GetLocalizedNumber(levelIndex);
 

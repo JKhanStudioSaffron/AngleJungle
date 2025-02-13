@@ -38,13 +38,17 @@ public class StageManager : MonoBehaviour {
                 btnInteract = true;
             }
 			buttonsList[i].GetComponentInChildren<BtnTxtStage>().ButtonState?.Invoke(btnInteract);
+
+			int index = i + 1;
+			buttonsList[i].GetComponent<Button>().onClick.AddListener(() => LoadStage(index));
 		}
+		LevelManager.TotalLevels = buttonsList.Length;
     }
 
-	public void LoadStage(string stageName)
+	void LoadStage(int stageIndex)
 	{
 		MusicManager.Instance.PlayClickButton ();
-		StartCoroutine (LoadStageCo(stageName));
+		StartCoroutine (LoadStageCo(stageIndex));
 	}
 
 	public void LoadStart()
@@ -59,12 +63,13 @@ public class StageManager : MonoBehaviour {
 		SceneManager.LoadScene(Global.SCENE_TREASURE);
     }
 
-	IEnumerator LoadStageCo(string stageName)
+	IEnumerator LoadStageCo(int stageIndex)
 	{
 		showLoading = true;
 		float fadeTime = GetComponent<Fading> ().BeginFade (1);
 		yield return new WaitForSeconds (fadeTime);
-		SceneManager.LoadScene (stageName);
+		LevelManager.LevelIndex = stageIndex;
+		SceneManager.LoadScene (Global.SCENE_LEVEL);
 	}
 
 	void OnGUI()

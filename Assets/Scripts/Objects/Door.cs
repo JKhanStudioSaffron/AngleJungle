@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Door : MonoBehaviour {
 
-	public GameObject _GM;
 	public GameObject Flame;
 	public GameObject EyeMask;
 	public GameObject DoorParticle;
@@ -12,25 +11,12 @@ public class Door : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		_GM.GetComponent<GameManager> ().door = gameObject;
 		Flame.SetActive (true);
 		EyeMask.SetActive (false);
 	}
 
 	/// <summary>
-	/// Opens the door.
-	/// </summary>
-	public void OpenDoor()
-	{
-		//Flame.SetActive (false);
-		//EyeMask.SetActive (true);
-		//DoorParticle.SetActive(true);
-		if(Global.antiCheater <= 0)
-			_GM.GetComponent<GameManager> ().DoorOpened ();
-	}
-
-	/// <summary>
-	/// Doors the opened.
+	/// Opens The Door.
 	/// </summary>
 	public void DoorOpened()
 	{
@@ -39,14 +25,4 @@ public class Door : MonoBehaviour {
 		DoorParticle.SetActive(true);
 	}
 
-	/// <summary>
-	/// Closes the door.
-	/// </summary>
-	public void CloseDoor()
-	{
-		//Flame.SetActive (true);
-		//EyeMask.SetActive (false);
-		//DoorParticle.SetActive(false);
-		_GM.GetComponent<GameManager> ().DoorClosed ();
-	}
 }
