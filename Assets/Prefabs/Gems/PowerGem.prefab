@@ -5268,7 +5268,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658764700100520}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -5286,7 +5286,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!114 &114126287389166120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5299,9 +5299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902ff575563f8d3409f272856cb89efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 0}
   PowerGemParticle: {fileID: 1074276772544228}
-  mask: {fileID: 0}
   ActivateNum: 1
   L1: {fileID: 1820887324648504}
   L2: {fileID: 1078534912431122}

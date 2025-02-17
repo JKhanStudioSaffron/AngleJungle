@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 	{
 		// Start timing level for analytics
 		AnalyticsSingleton.Instance.levelStart = Time.time;
-		AnalyticsSingleton.Instance.levelName = SceneManager.GetActiveScene().name;
+		AnalyticsSingleton.Instance.levelName = "LEVEL_" + LevelManager.LevelIndex.ToString();// SceneManager.GetActiveScene().name;
 
 		isPauseMenuOn = false;
 		isLevelFinished = false;
@@ -196,8 +196,10 @@ public class GameManager : MonoBehaviour
 	{
 		if (countToWin != null)
 			StopCoroutine(countToWin);
+
 		isStartToWinCalled = false;
-		GoButton.SetActive(false);
+		if(GoButton != null)
+			GoButton.SetActive(false);
 	}
 
 	/// <summary>
