@@ -95,7 +95,6 @@ public class Mirror : MonoBehaviour
 		else 
 		{
 			DeactivateLight();
-			StartCoroutine (CountDown());
 		}
 			
 		Vector2 slotBasePosition = (Vector2)transform.position + new Vector2 (0,-0.48f);
@@ -125,14 +124,14 @@ public class Mirror : MonoBehaviour
 			break;
 		}
 
-		if (!isActivated) 
+		if (!isActivated)
 		{
-			line.SetActive (false);
-			sectorImage.SetActive (false);
-			Angle_Text.gameObject.SetActive (false);
+			line.SetActive(false);
+			sectorImage.SetActive(false);
+			Angle_Text.gameObject.SetActive(false);
 			sr.sprite = greyMirrorSp;
-		} 
-		else 
+		}
+		else
 		{
 			sr.sprite = redMirrorSp;
 		}
@@ -274,6 +273,9 @@ public class Mirror : MonoBehaviour
 	/// </summary>
 	public void ActiveLight()
 	{
+		if (isActivated)
+			return;
+
 		isActivated = true;
 		countDown = 3;
 
@@ -289,6 +291,9 @@ public class Mirror : MonoBehaviour
 	/// </summary>
 	public void DeactivateLight()
 	{
+		if (!isActivated)
+			return;
+
 		isActivated = false;
 		PowerGem.CheckLightActivated?.Invoke(line);
 

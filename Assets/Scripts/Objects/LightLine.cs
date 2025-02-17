@@ -1,53 +1,50 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Purpose: Manages interactions between light and objects like Power Gems and Mirrors.
+/// Responsibilities:
+/// - Activates Power Gems when they come into contact with light.
+/// - Triggers mirror activation when hit by light.
+/// - Deactivates Power Gems when light exits.
+/// Usage:
+/// - Attach this script to a light beam object with a trigger collider.
+/// - Ensure objects like Power Gems and Mirrors have the correct tags.
+/// </summary>
+
 public class LightLine : MonoBehaviour 
 {
-    private float collisionTimeout = 0.5f;
-        
-    void OnParticleCollision(GameObject other)
-	{
-        if (other.tag == Global.TAG_POWER_GEM)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag(Global.TAG_POWER_GEM))
         {
-            PowerGem powerGem = other.GetComponent<PowerGem>();
+            PowerGem powerGem = collision.GetComponent<PowerGem>();
             powerGem.ActivateGem(gameObject); // Pass self as identifier
-            StartCoroutine(RemoveLightAfterDelay(powerGem));
         }
 
-        if (other.tag == Global.TAG_MIRROR_RECEIVER) 
-		{
-            other.GetComponentInParent<Mirror>().ActiveLight();
+        if (collision.CompareTag(Global.TAG_MIRROR_RECEIVER))
+        {
+            Mirror mirror = collision.GetComponentInParent<Mirror>();
+            if (mirror != null)
+                mirror.ActiveLight();
         }
     }
 
-    /// <summary>
-    /// Checks light still colliding with powergem or not
-    /// </summary>
-    /// 
-    IEnumerator RemoveLightAfterDelay(PowerGem powerGem)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        yield return new WaitForSeconds(collisionTimeout);
-
-        if (!IsStillCollidingWithPowerGem())
+        if (collision.CompareTag(Global.TAG_POWER_GEM))
         {
+            PowerGem powerGem = collision.GetComponent<PowerGem>();
             powerGem.DeactivateGem(gameObject);
         }
-    }
 
-    /// <summary>
-    /// casts a ray after timeout to check if its still colliding with the powergem
-    /// </summary>
-    /// 
-
-    private bool IsStillCollidingWithPowerGem()
-    {        
-        RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, transform.forward);
-        if(hit.Length > 0)
+        if (collision.CompareTag(Global.TAG_MIRROR_RECEIVER))
         {
-            if (hit.ToList().Exists(obj => obj.collider.tag == Global.TAG_POWER_GEM))
-                return true;
+            Mirror mirror = collision.GetComponentInParent<Mirror>();
+            if(mirror != null && mirror.isReceiver)
+                mirror.DeactivateLight();
         }
-        return false;
     }
+
 }

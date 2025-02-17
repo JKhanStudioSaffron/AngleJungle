@@ -11,8 +11,6 @@ public class Treasure : MonoBehaviour {
 	public GameObject par_Chest;
 	public GameObject GM;
 	public GameObject TreasureCanvas;
-	private GameObject musicManager;
-	Scene scene;
 	int levelIndex;
 	int TrophyIndex;
 	GameObject treasure;
@@ -24,8 +22,7 @@ public class Treasure : MonoBehaviour {
     {
 		GetComponent<SpriteRenderer> ().sprite = sp_closedChest;
 		par_Chest.SetActive (false);
-		scene = SceneManager.GetActiveScene ();
-		levelIndex = scene.buildIndex - 1;
+		levelIndex = LevelManager.LevelIndex;
 		        
         if (levelIndex <= 7)
         {
