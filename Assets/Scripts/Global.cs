@@ -43,6 +43,7 @@ public class Global
 
 	// Layer strings
 	public const string LAYER_POWER_GEM = "PowerGem";
+	public const string LAYER_OBSTACLE = "Obstacle";
 
 	// Tag strings
 	public const string TAG_DRAGGABLE = "Draggable";
