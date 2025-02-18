@@ -665,7 +665,7 @@ PrefabInstance:
     - target: {fileID: 4017288846138943722, guid: 9cdc34da70662af458a1222ed286f645,
         type: 3}
       propertyPath: AngleVal
-      value: -75
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 4915213725802682190, guid: 9cdc34da70662af458a1222ed286f645,
         type: 3}
@@ -810,7 +810,7 @@ PrefabInstance:
     - target: {fileID: 4017288846138943722, guid: 9cdc34da70662af458a1222ed286f645,
         type: 3}
       propertyPath: AngleVal
-      value: -135
+      value: 135
       objectReference: {fileID: 0}
     - target: {fileID: 4915213725802682190, guid: 9cdc34da70662af458a1222ed286f645,
         type: 3}
@@ -904,7 +904,7 @@ PrefabInstance:
     - target: {fileID: 4017288846138943722, guid: 9cdc34da70662af458a1222ed286f645,
         type: 3}
       propertyPath: AngleVal
-      value: -15
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4915213725802682190, guid: 9cdc34da70662af458a1222ed286f645,
         type: 3}

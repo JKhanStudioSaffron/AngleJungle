@@ -35,6 +35,15 @@ public class PlayerPosition
     public LevelIndicesSetup LevelIndices;
 }
 
+/// <summary>
+/// Defines AngleTypes
+/// </summary>
+public enum AngleType
+{
+    ClockWise,
+    AntiClockWise
+}
+
 public class Global
 {
 	public static bool isDragging=false;
