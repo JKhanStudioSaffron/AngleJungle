@@ -43,6 +43,17 @@ public enum AngleType
     ClockWise,
     AntiClockWise
 }
+/// <summary>
+/// Represents slot-specific sprite variations and positional offsets.
+/// </summary>
+
+[System.Serializable]
+public struct SlotPositions
+{
+    public Sprite GreyObject;
+    public Sprite RedObject;
+    public Vector2[] Offsets;
+}
 
 public class Global
 {
@@ -70,6 +81,7 @@ public class Global
 	public const string SCENE_TREASURE = "Treasure";
 	public const string SCENE_START = "Start";
 	public const string SCENE_LEVEL = "Level";
+	public const string SCENE_SETTINGS = "AccessibilitySystem";
 
     // Animation strings
     public const string ANIMATION_HAPPY = "Happy";

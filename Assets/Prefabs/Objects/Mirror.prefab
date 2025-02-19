@@ -113,17 +113,28 @@ MonoBehaviour:
   line: {fileID: 1816669807644668}
   Angle_Text: {fileID: 8916724520995250627}
   isReceiver: 0
-  greyMirror1: {fileID: 21300000, guid: 3e835a4b238fcad40b8ce1f9190e7fc9, type: 3}
-  greyMirror2: {fileID: 21300000, guid: 2539903494614b14ca193d2b1943e151, type: 3}
-  greyMirror3: {fileID: 21300000, guid: ffc0735f3d83bea44acb7241ea6a9d8b, type: 3}
-  redMirror1: {fileID: 21300000, guid: deffb3ebf5578c4499417260990c84ec, type: 3}
-  redMirror2: {fileID: 21300000, guid: ce501f5294d635947ad745565b932b14, type: 3}
-  redMirror3: {fileID: 21300000, guid: 4de6290f16e67134ebd9ab39fadc90df, type: 3}
   protractor: {fileID: 1265125399105128}
   as_toggle: {fileID: 82678909198598244}
   toggleCollider: {fileID: 1570068500241776}
   TutorialHand: {fileID: 0}
   slotList: []
+  SlotPositions:
+  - GreyObject: {fileID: 21300000, guid: 3e835a4b238fcad40b8ce1f9190e7fc9, type: 3}
+    RedObject: {fileID: 21300000, guid: deffb3ebf5578c4499417260990c84ec, type: 3}
+    Offsets:
+    - {x: 0, y: 0}
+  - GreyObject: {fileID: 21300000, guid: 2539903494614b14ca193d2b1943e151, type: 3}
+    RedObject: {fileID: 21300000, guid: ce501f5294d635947ad745565b932b14, type: 3}
+    Offsets:
+    - {x: -0.3, y: 0}
+    - {x: 0.3, y: 0}
+  - GreyObject: {fileID: 21300000, guid: ffc0735f3d83bea44acb7241ea6a9d8b, type: 3}
+    RedObject: {fileID: 21300000, guid: 4de6290f16e67134ebd9ab39fadc90df, type: 3}
+    Offsets:
+    - {x: -0.58, y: 0}
+    - {x: 0, y: 0}
+    - {x: 0.6, y: 0}
+  BasePositionOffset: {x: 0, y: -0.48}
 --- !u!60 &60158383513665860
 PolygonCollider2D:
   m_ObjectHideFlags: 0

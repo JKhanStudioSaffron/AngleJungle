@@ -19,7 +19,6 @@ public class SlotUnit
 	}
 }
 
-
 public class Mirror : MonoBehaviour
 {
 	public GameObject sectorImage;
@@ -34,17 +33,20 @@ public class Mirror : MonoBehaviour
 	private Sprite greyMirrorSp;
 	private Sprite redMirrorSp;
 
-	public Sprite greyMirror1, greyMirror2, greyMirror3;
-
-	public Sprite redMirror1, redMirror2, redMirror3;
-
 	public GameObject protractor;
 	public AudioSource as_toggle;
 	public GameObject toggleCollider;
 
 	public GameObject TutorialHand;
 	bool isActivated = false;
+
+	[HideInInspector]
 	public List<SlotUnit> slotList;
+
+	public List<SlotPositions> SlotPositions;
+
+	public Vector2 BasePositionOffset;
+
 	float showNumber = 0f;
 	float degreeNumber = 0f;
 	SpriteRenderer sr;
@@ -97,32 +99,17 @@ public class Mirror : MonoBehaviour
 			DeactivateLight();
 		}
 
-		Vector2 slotBasePosition = (Vector2)transform.position + new Vector2(0, -0.48f);
+		Vector2 slotBasePosition = (Vector2)transform.position + BasePositionOffset;
 		slotList = new List<SlotUnit>(maximumSlots);
 
-		switch (maximumSlots) {
-			case 1:
-				slotList.Clear();
-				slotList.Add(new SlotUnit(true, slotBasePosition));
-				greyMirrorSp = greyMirror1;
-				redMirrorSp = redMirror1;
-				break;
-			case 2:
-				slotList.Clear();
-				slotList.Add(new SlotUnit(true, slotBasePosition + new Vector2(-0.30f, 0)));
-				slotList.Add(new SlotUnit(true, slotBasePosition + new Vector2(0.30f, 0)));
-				greyMirrorSp = greyMirror2;
-				redMirrorSp = redMirror2;
-				break;
-			case 3:
-				slotList.Clear();
-				slotList.Add(new SlotUnit(true, slotBasePosition + new Vector2(-0.58f, 0)));
-				slotList.Add(new SlotUnit(true, slotBasePosition));
-				slotList.Add(new SlotUnit(true, slotBasePosition + new Vector2(0.60f, 0)));
-				greyMirrorSp = greyMirror3;
-				redMirrorSp = redMirror3;
-				break;
+		SlotPositions CurrentSlot = SlotPositions.Find(slot => slot.Offsets.Length == maximumSlots);
+
+		for(int i = 0; i < maximumSlots; i++)
+		{
+			slotList.Add(new SlotUnit(true, slotBasePosition + CurrentSlot.Offsets[i]));
 		}
+		greyMirrorSp = CurrentSlot.GreyObject;
+		redMirrorSp = CurrentSlot.RedObject;
 
 		if (!isActivated)
 		{
@@ -153,11 +140,6 @@ public class Mirror : MonoBehaviour
 		Vector2 vect2_angle = new Vector2(1, 0); // for angle
 		curLerpTime += Time.deltaTime;
 		float perc = curLerpTime / lerpTime;
-
-		if (perc > 0.14f)
-		{
-			perc = 1f;
-		}
 
 		degreeNumber = Mathf.Lerp(degreeNumber, pickerNumber, perc);//only time interpolates angles
 
@@ -295,6 +277,9 @@ public class Mirror : MonoBehaviour
 
     public void DeactivateIfNoLightIntersects(LightLine light)
     {
+		if (!isReceiver)
+			return;
+
 		activeLights.Remove(light);
 
 		if (activeLights.Count == 0)

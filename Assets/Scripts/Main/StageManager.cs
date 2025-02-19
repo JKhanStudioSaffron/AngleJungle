@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -10,8 +9,6 @@ public class StageManager : MonoBehaviour {
 	public GameObject[] buttonsList;
 
 	public int currentLevelProgress = 1;
-
-	private GameObject musicManager;
 
 	bool showLoading = false;
 
