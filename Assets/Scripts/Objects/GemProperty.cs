@@ -22,7 +22,7 @@ public class GemProperty : MonoBehaviour
 
     public void Start()
     {
-        if (AngleType == AngleType.AntiClockWise && AngleVal < 0)
+        if (AngleType == AngleType.AntiClockWise && AngleVal > 0)
             AngleVal *= -1;
 
         GemScript.gemAngle = AngleVal;

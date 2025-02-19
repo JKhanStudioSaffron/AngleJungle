@@ -39,6 +39,6 @@ public class OptionsManager : MonoBehaviour
     public void GoToMM()
     {
         MusicManager.Instance?.PlayClickButton();
-        SceneManager.LoadScene("Start");
+        SceneManager.LoadScene(Global.SCENE_START);
     }
 }

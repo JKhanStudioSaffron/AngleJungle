@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,26 +10,15 @@ public class PowerGem : MonoBehaviour
 
 	private Sprite greyPG;
 	private Sprite redPG;
-	public GameObject L1;
-	public GameObject L2;
-	public GameObject L3;
-	public GameObject L4;
-
-	public Sprite greyPG1;
-	public Sprite greyPG2;
-	public Sprite greyPG3;
-	public Sprite greyPG4;
-
-	public Sprite redPG1;
-	public Sprite redPG2;
-	public Sprite redPG3;
-	public Sprite redPG4;
+	public GameObject[] LightObjects;
 
 	private SpriteRenderer sp;
 
     HashSet<GameObject> activeLights = new HashSet<GameObject>();
-	List<GameObject> lightObj = new List<GameObject>();
 	public static Action<GameObject> CheckLightActivated;
+
+	public List<SlotPositions> SlotPositions;
+
 
     private void OnEnable()
     {
@@ -50,55 +38,16 @@ public class PowerGem : MonoBehaviour
     {
 		sp = GetComponent<SpriteRenderer> ();
 
-        // Set initial sate
-		L1.SetActive (false);
-		L2.SetActive (false);
-		L3.SetActive (false);
-		L4.SetActive (false);
-		
-        // Set position of dots programatically
-        switch (ActivateNum) 
-		{
-			case 1:
-				greyPG = greyPG1;
-				redPG = redPG1;
-				L1.transform.localPosition = new Vector2 (-0.15f, -2.26f);
-				lightObj.Add (L1);
-				break;
+		SlotPositions CurrentSlot = SlotPositions.Find(slot => slot.Offsets.Length == ActivateNum);
 
-			case 2:
-				greyPG = greyPG2;
-				redPG = redPG2;
-				L1.transform.localPosition = new Vector2 (-0.924f, -2.188f);
-				L2.transform.localPosition = new Vector2 (0.627f, -2.158f);
-				lightObj.Add(L1);
-				lightObj.Add(L2);
-				break;
+        for (int i = 0; i < ActivateNum; i++)
+        {
+			LightObjects[i].SetActive(false);
+			LightObjects[i].transform.localPosition = CurrentSlot.Offsets[i];
+        }
+        greyPG = CurrentSlot.GreyObject;
+        redPG = CurrentSlot.RedObject;
 
-			case 3:
-				greyPG = greyPG3;
-				redPG = redPG3;
-				L1.transform.localPosition = new Vector2 (-1.429f, -2.164f);
-				L2.transform.localPosition = new Vector2 (-0.06f, -2.298f);
-				L3.transform.localPosition = new Vector2 (1.272f, -2.17f);
-				lightObj.Add(L1);
-				lightObj.Add(L2);
-				lightObj.Add(L3);
-				break;
-
-			case 4:
-				greyPG = greyPG4;
-				redPG = redPG4;
-				L1.transform.localPosition = new Vector2 (-1.903f, -1.981f);
-				L2.transform.localPosition = new Vector2 (-0.869f, -2.231f);
-				L3.transform.localPosition = new Vector2 (0.481f, -2.261f);
-				L4.transform.localPosition = new Vector2 (1.77f, -1.994f);
-				lightObj.Add(L1);
-				lightObj.Add(L2);
-				lightObj.Add(L3);
-				lightObj.Add(L4);
-				break;
-		}
 
 		sp.sprite = greyPG;
 		PowerGemParticle.SetActive (false);
@@ -110,11 +59,11 @@ public class PowerGem : MonoBehaviour
 	
 	void ActivateLightObjects()
 	{
-		for(int i = 0;i < lightObj.Count; i++)
+		for(int i = 0;i < LightObjects.Length; i++)
 		{
-			lightObj[i].SetActive (false);
+            LightObjects[i].SetActive (false);
 			if(i < activeLights.Count)
-				lightObj[i].SetActive (true);
+                LightObjects[i].SetActive (true);
 		}
 	}
 
