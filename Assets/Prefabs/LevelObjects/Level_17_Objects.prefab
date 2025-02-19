@@ -571,6 +571,11 @@ PrefabInstance:
       propertyPath: AngleVal
       value: 135
       objectReference: {fileID: 0}
+    - target: {fileID: 8490024978606138865, guid: 24cbba0a80af1e648a774db82952e359,
+        type: 3}
+      propertyPath: InitialMirror
+      value: 
+      objectReference: {fileID: 3305011187410942128}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -873,6 +878,12 @@ PrefabInstance:
 --- !u!4 &3298918799080971536 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4929290592370494, guid: 139477f9931e8fa4fbb93752e2e442a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3303845536248160814}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3305011187410942128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1227229736917662, guid: 139477f9931e8fa4fbb93752e2e442a0,
     type: 3}
   m_PrefabInstance: {fileID: 3303845536248160814}
   m_PrefabAsset: {fileID: 0}

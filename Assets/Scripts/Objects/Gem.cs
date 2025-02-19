@@ -11,7 +11,7 @@ public class Gem : MonoBehaviour
 	public AudioSource as_PickGem;
 
 	// Game objects
-	public GameObject initialMirror;
+	public GameObject initialMirror { get; set; }
 	private Gem gemToBeSwapped;
 	public GameObject OnSelectPar;
 	private Mirror MirrorGO;
@@ -29,7 +29,7 @@ public class Gem : MonoBehaviour
 	private bool dragging = false;
 	private bool collMirror = false;
 
-	public bool onSlot = false;
+	public bool onSlot { get; set; }
 
 	// Tranforrms
 	private Transform toDrag;
