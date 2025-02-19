@@ -434,6 +434,11 @@ PrefabInstance:
       propertyPath: AngleVal
       value: 165
       objectReference: {fileID: 0}
+    - target: {fileID: 4017288846138943722, guid: 9cdc34da70662af458a1222ed286f645,
+        type: 3}
+      propertyPath: InitialMirror
+      value: 
+      objectReference: {fileID: 8173192519387763459}
     - target: {fileID: 4915213725802682190, guid: 9cdc34da70662af458a1222ed286f645,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -721,6 +726,11 @@ PrefabInstance:
       propertyPath: AngleVal
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 4017288846138943722, guid: 9cdc34da70662af458a1222ed286f645,
+        type: 3}
+      propertyPath: InitialMirror
+      value: 
+      objectReference: {fileID: 8173192519387763459}
     - target: {fileID: 4915213725802682190, guid: 9cdc34da70662af458a1222ed286f645,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1028,6 +1038,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 139477f9931e8fa4fbb93752e2e442a0, type: 3}
+--- !u!1 &8173192519387763459 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1227229736917662, guid: 139477f9931e8fa4fbb93752e2e442a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8172167874668530077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8176382202527705779 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4792946054882094, guid: 139477f9931e8fa4fbb93752e2e442a0,

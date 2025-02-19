@@ -19,6 +19,7 @@ public class GemProperty : MonoBehaviour
     public AngleType AngleType;
     public TMP_Text AngleText;
     public Gem GemScript;
+    public GameObject InitialMirror;
 
     public void Start()
     {
@@ -27,5 +28,10 @@ public class GemProperty : MonoBehaviour
 
         GemScript.gemAngle = AngleVal;
         AngleText.text = $"{AngleVal}°";
+        if (InitialMirror != null)
+        {
+            GemScript.initialMirror = InitialMirror;
+            GemScript.onSlot = true;
+        }
     }
 }
