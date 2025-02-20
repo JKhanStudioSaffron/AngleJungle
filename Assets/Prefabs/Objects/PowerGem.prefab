@@ -5180,7 +5180,7 @@ GameObject:
   - component: {fileID: 212371658949007098}
   - component: {fileID: 50701675073501810}
   - component: {fileID: 114126287389166120}
-  - component: {fileID: 60186100066466300}
+  - component: {fileID: 2116006723706235655}
   m_Layer: 8
   m_Name: PowerGem
   m_TagString: PowerGem
@@ -5329,8 +5329,8 @@ MonoBehaviour:
     - {x: -0.869, y: -2.231}
     - {x: 0.481, y: -2.261}
     - {x: 1.77, y: -1.994}
---- !u!60 &60186100066466300
-PolygonCollider2D:
+--- !u!58 &2116006723706235655
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5361,32 +5361,9 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.9107814, y: 7.2400002}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -1.08, y: -1.04}
-      - {x: -2.44, y: 0.71}
-      - {x: -2.3, y: 1.98}
-      - {x: -1.1, y: 1.34}
-      - {x: -0.89, y: 2.37}
-      - {x: 0.1, y: 3.05}
-      - {x: 0.83, y: 2.04}
-      - {x: 1.22, y: 1.67}
-      - {x: 2.53, y: 1.83}
-      - {x: 2.15, y: 0.76}
-      - {x: 2.47, y: 0.31}
-      - {x: 2.38, y: -0.43}
-      - {x: 0.95, y: -1.05}
-  m_UseDelaunayMesh: 0
+  m_Offset: {x: 0, y: 0.8}
+  serializedVersion: 2
+  m_Radius: 2.14
 --- !u!1 &1820887324648504
 GameObject:
   m_ObjectHideFlags: 0
