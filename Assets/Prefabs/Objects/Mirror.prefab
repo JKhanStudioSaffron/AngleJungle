@@ -135,6 +135,7 @@ MonoBehaviour:
     - {x: 0, y: 0}
     - {x: 0.6, y: 0}
   BasePositionOffset: {x: 0, y: -0.48}
+  TurningDuration: 1.5
 --- !u!60 &60158383513665860
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -10906,16 +10907,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816669807644668}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.70710677}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.08, y: 1.49, z: -24.292067}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4070847385597316}
   - {fileID: 4031509224410862}
-  - {fileID: 2029370842804629437}
+  - {fileID: 6522436559938657327}
   m_Father: {fileID: 4929290592370494}
-  m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!198 &198662295970903778
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -15825,7 +15826,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!1 &8557555185136854736
+--- !u!1 &7203206165306395320
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15833,81 +15834,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2029370842804629437}
-  - component: {fileID: 7502829557616167054}
-  - component: {fileID: 1149286227198512118}
+  - component: {fileID: 6522436559938657327}
+  - component: {fileID: 2731115999749634438}
   m_Layer: 9
-  m_Name: Collider
+  m_Name: RayCaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2029370842804629437
+--- !u!4 &6522436559938657327
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8557555185136854736}
+  m_GameObject: {fileID: 7203206165306395320}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4949672599301388}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 180}
---- !u!68 &7502829557616167054
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8557555185136854736}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 65280
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 55
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.5, y: 0}
-  - {x: 42, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &1149286227198512118
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2731115999749634438
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8557555185136854736}
+  m_GameObject: {fileID: 7203206165306395320}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a5cca34ad07fb64c9005d4a899f01f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c3ad6db93b9eb0489504228b3a72fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LayersToInteractWith:
+    serializedVersion: 2
+    m_Bits: 64768

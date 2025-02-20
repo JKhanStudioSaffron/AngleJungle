@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PowerGem : MonoBehaviour 
 {
-
 	public GameObject PowerGemParticle;
 	public int ActivateNum = 1;
 
