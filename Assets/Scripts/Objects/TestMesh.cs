@@ -11,20 +11,7 @@ public class TestMesh : MonoBehaviour
 	public int angleDegreePrecision = 1000;
 	public int radiusPrecision = 1000;
 
-	private MeshFilter meshFilter;
-
 	private SectorMeshCreator creator = new SectorMeshCreator();
-
-	[ExecuteInEditMode]
-	private void Awake()
-	{
-		meshFilter = GetComponent<MeshFilter>();
-	}
-
-	private void Update()
-	{
-		meshFilter.mesh = creator.CreateMesh(radius, startAngleDegree, angleDegree, segments, angleDegreePrecision, radiusPrecision);
-	}
 
 	//在Scene界面画辅助线
 	void OnDrawGizmos()

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 using DG.Tweening;
+using System;
 
 [System.Serializable]
 public class SlotUnit
@@ -51,25 +52,28 @@ public class Mirror : MonoBehaviour
 	float degreeNumber = 0f;
 	SpriteRenderer sr;
 
-	private float lerpTime = 16f;
-	private float curLerpTime = 0;
-
+	public float TurningDuration;
 	private bool isProtractorOn = false;
 	private Vector3 proOriginalScale;
 
-	HashSet<LightLine> activeLights = new HashSet<LightLine>();
+	HashSet<CastRayFromMirror> activeLights = new HashSet<CastRayFromMirror>();
+	public Action SetAngle, MirrorStopped;
 
-	private void OnEnable()
+    Tweener tween;
+
+    private void OnEnable()
 	{
 		InputManager.Instance.Pressed += ToggleD;
-	}
+		SetAngle += StartAngleLerp;
+    }
 
 	private void OnDisable()
 	{
 		InputManager.Instance.Pressed -= ToggleD;
-	}
+        SetAngle -= StartAngleLerp;
+    }
 
-	void ToggleD(Vector3 position)
+    void ToggleD(Vector3 position)
 	{
 		if (Global.isPaused)
 			return;
@@ -90,15 +94,6 @@ public class Mirror : MonoBehaviour
 	{
 		sr = GetComponent<SpriteRenderer>();
 
-		if (!isReceiver)
-		{
-			ActiveLight();
-		}
-		else
-		{
-			DeactivateLight();
-		}
-
 		Vector2 slotBasePosition = (Vector2)transform.position + BasePositionOffset;
 		slotList = new List<SlotUnit>(maximumSlots);
 
@@ -111,56 +106,66 @@ public class Mirror : MonoBehaviour
 		greyMirrorSp = CurrentSlot.GreyObject;
 		redMirrorSp = CurrentSlot.RedObject;
 
-		if (!isActivated)
-		{
-			line.SetActive(false);
-			sectorImage.SetActive(false);
-			Angle_Text.gameObject.SetActive(false);
-			sr.sprite = greyMirrorSp;
-		}
-		else
-		{
-			sr.sprite = redMirrorSp;
-		}
+
+        if (!isReceiver)
+        {
+            ActiveLight();
+        }
+        else
+        {
+            DeactivateLight();
+        }
 
 		proOriginalScale = new Vector3(0.7f, 0.7f, 0.7f);
 		protractor.transform.localScale = Vector3.zero;
-	}
 
-	/// <summary>
-	/// Core mechanism!!!
-	/// This Update() calculate the angle and parse it into laser angle in this 2D game world
-	/// </summary>
-	void Update()
+		StartAngleLerp();
+
+    }
+
+    /// <summary>
+    /// Core mechanism!!!
+    /// This calculate the angle and parse it into laser angle in this 2D game world
+    /// </summary>
+    void StartAngleLerp()
+    {
+		// Kill any previous tweens on degreeNumber to prevent conflicts
+		tween?.Kill();
+
+        // DoTween tween for smooth angle transition
+        tween = DOTween.To(() => degreeNumber, x => degreeNumber = x, pickerNumber, TurningDuration)
+            .SetEase(Ease.OutQuad) // Adjust ease type as needed
+            .OnUpdate(UpdateAngleVisuals)
+            .SetTarget(this) // Useful for killing previous tweens when restarting
+            .OnComplete(() => MirrorStopped?.Invoke());
+    }
+
+    void UpdateAngleVisuals()
+    {
+		if (Global.isPaused) return;
+
+        Vector2 vect2_tmp = Quaternion.AngleAxis(showNumber / 2, Vector3.forward) * Vector2.right;
+        sectorImage.GetComponent<TestMesh>().angleDegree = showNumber;
+        Vector2 vect2_angle = Quaternion.AngleAxis(degreeNumber, Vector3.forward) * Vector2.right;
+
+        line.transform.rotation = Quaternion.LookRotation(vect2_angle);
+
+		SetAngleText(vect2_tmp);
+    }
+
+	void SetAngleText(Vector2 vect2_tmp)
 	{
-		if (Global.isPaused)
-			return;
+        if (Angle_Text)
+        {
+            showNumber = normalizeAngle(degreeNumber);
+            Angle_Text.text = new CultureInfo(LocalizationSettings.SelectedLocale.Identifier.Code).TextInfo.IsRightToLeft
+                ? "°" + LocalizedNumberManager.GetLocalizedNumber(Mathf.RoundToInt(showNumber))
+                : LocalizedNumberManager.GetLocalizedNumber(Mathf.RoundToInt(showNumber)) + "°";
 
-		Vector2 vect2_tmp = new Vector2(1, 0); // for text
-		Vector2 vect2_angle = new Vector2(1, 0); // for angle
-		curLerpTime += Time.deltaTime;
-		float perc = curLerpTime / lerpTime;
-
-		degreeNumber = Mathf.Lerp(degreeNumber, pickerNumber, perc);//only time interpolates angles
-
-		vect2_tmp = Quaternion.AngleAxis(showNumber / 2, Vector3.forward) * vect2_tmp;
-		sectorImage.GetComponent<TestMesh>().angleDegree = showNumber;
-		vect2_angle = Quaternion.AngleAxis(degreeNumber, Vector3.forward) * vect2_angle;
-
-		line.transform.rotation = Quaternion.LookRotation(vect2_angle);
-
-		if (Angle_Text)
-		{
-			showNumber = normalizeAngle(degreeNumber);
-
-			Angle_Text.text = new CultureInfo(LocalizationSettings.SelectedLocale.Identifier.Code).TextInfo.IsRightToLeft ?
-				 "°" + LocalizedNumberManager.GetLocalizedNumber(Mathf.RoundToInt(showNumber)) :
-				LocalizedNumberManager.GetLocalizedNumber(Mathf.RoundToInt(showNumber)) + "°";
-
-			Angle_Text.gameObject.transform.localPosition = vect2_tmp * 100f;
-		}
-	}
-
+            Angle_Text.gameObject.transform.localPosition = vect2_tmp * 100f;
+        }
+    }
+    
 	/// <summary>
 	/// Normalizes the angle within 360. It also works with negative angles
 	/// </summary>
@@ -210,7 +215,6 @@ public class Mirror : MonoBehaviour
 		{
 			if (su.isSlotEmpty)
 			{
-				curLerpTime = 0.0f;
 				as_putIn.Play();
 				su.targetGO = go;
 				su.isSlotEmpty = false;
@@ -231,7 +235,6 @@ public class Mirror : MonoBehaviour
 		{
 			if (su.targetGO == go)
 			{
-				curLerpTime = 0.0f;
 				su.targetGO = null;
 				su.isSlotEmpty = true;
 			}
@@ -242,16 +245,15 @@ public class Mirror : MonoBehaviour
     /// Actives this receiver mirror if one light intersects with it
     /// </summary>
 
-    public void ActivateIfLightIntersects(LightLine light)
+    public void ActivateIfLightIntersects(CastRayFromMirror light)
 	{
+		if (!isReceiver)
+			return;
+
 		if (isActivated)
 			return;
 
-		if (line.GetComponentInChildren<LightLine>() == light)
-			return;
-
 		activeLights.Add(light);
-		
 		if (activeLights.Count > 0)
 		{
 			ActiveLight();
@@ -275,14 +277,14 @@ public class Mirror : MonoBehaviour
     /// Deactivates this receiver mirror if no light intersects with it
     /// </summary>
 
-    public void DeactivateIfNoLightIntersects(LightLine light)
+    public void DeactivateIfNoLightIntersects(CastRayFromMirror light)
     {
 		if (!isReceiver)
 			return;
 
 		activeLights.Remove(light);
 
-		if (activeLights.Count == 0)
+        if (activeLights.Count == 0)
 		{
 			DeactivateLight();
 		}
@@ -292,7 +294,8 @@ public class Mirror : MonoBehaviour
     /// Deactivates this receiver mirror.
     /// </summary>
     public void DeactivateLight()
-	{		
+	{
+		SetAngle?.Invoke();
 		isActivated = false;
 		PowerGem.CheckLightActivated?.Invoke(line);
 		line.SetActive(false);

@@ -91,6 +91,7 @@ public class Gem : MonoBehaviour
 				MirrorGO.pickerNumber -= gemAngle;
 				MirrorGO.ReleasePosition(gameObject);
 				Global.antiCheater = 2;
+				MirrorGO.SetAngle?.Invoke();
 			}
 
 			toDrag = hit.transform;
@@ -160,8 +161,9 @@ public class Gem : MonoBehaviour
 					MirrorGO.pickerNumber += gemAngle;
 					//set anti-cheater conuter to 2
 					Global.antiCheater = 2;
+                    MirrorGO.SetAngle?.Invoke();
 
-					if (gemToBeSwapped != null)
+                    if (gemToBeSwapped != null)
 						gemToBeSwapped = null;
 				}
 			}
@@ -231,7 +233,8 @@ public class Gem : MonoBehaviour
 				//fetch the position of gem
 				slotPosition = initMirror.ArrangePosition (gameObject);
 				initMirror.pickerNumber += gemAngle;
-			}
+                initMirror.SetAngle?.Invoke();
+            }
 
             ScaleOnPlacement();
         }
@@ -248,8 +251,8 @@ public class Gem : MonoBehaviour
 			MirrorGO.slots--;
 			MirrorGO.pickerNumber -= gemAngle;
 			MirrorGO.ReleasePosition (gameObject);
-
-			if (!dragging) 
+            MirrorGO.SetAngle?.Invoke();
+            if (!dragging) 
 			{
 				transform.position += new Vector3 (0f, -1f, 0f);
 			}
