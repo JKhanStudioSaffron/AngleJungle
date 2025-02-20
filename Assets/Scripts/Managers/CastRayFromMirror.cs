@@ -22,6 +22,7 @@ public class CastRayFromMirror : MonoBehaviour
     bool drawRay;
     Collider2D hitCollider;
     float thickness = 0.1f;
+    float rayLength = 1000f;
 
     private void OnEnable()
     {
@@ -41,6 +42,7 @@ public class CastRayFromMirror : MonoBehaviour
 
     void DeactivateCollidedObjects()
     {
+        //if is not colliding with anyobject then deactivate the old collision objects
         if (powerGem != null)
             powerGem.DeactivateGem(gameObject);
 
@@ -61,19 +63,21 @@ public class CastRayFromMirror : MonoBehaviour
         
         Vector3 offset = Vector3.up * thickness;
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position + offset, transform.forward * 1000);
-        Gizmos.DrawRay(transform.position, transform.forward * 1000f);
-        Gizmos.DrawRay(transform.position - offset, transform.forward * 1000f);
+        Gizmos.DrawRay(transform.position + offset, transform.forward * rayLength);
+        Gizmos.DrawRay(transform.position, transform.forward * rayLength);
+        Gizmos.DrawRay(transform.position - offset, transform.forward * rayLength);
     }
 
     private void CastRay()
     {
         Vector3 offset = Vector3.up * thickness;
+
+        // Cast 3 rays to broaden the area of collision
         List<RaycastHit2D> hit = new()
         {
-            Physics2D.Raycast(transform.position + offset, transform.forward, 1000, LayersToInteractWith),
-            Physics2D.Raycast(transform.position, transform.forward, 1000, LayersToInteractWith),
-            Physics2D.Raycast(transform.position - offset, transform.forward, 1000, LayersToInteractWith)
+            Physics2D.Raycast(transform.position + offset, transform.forward, rayLength, LayersToInteractWith),
+            Physics2D.Raycast(transform.position, transform.forward, rayLength, LayersToInteractWith),
+            Physics2D.Raycast(transform.position - offset, transform.forward, rayLength, LayersToInteractWith)
         };
 
         RaycastHit2D bestHit = hit
@@ -92,16 +96,20 @@ public class CastRayFromMirror : MonoBehaviour
             return;
         }
 
+        //stop any further logic if ray collides with an obstacle
         if (hitCollider.gameObject.layer == LayerMask.NameToLayer(Global.LAYER_OBSTACLE))
         {
             return;
         }
+
+        //activates the powergem upon collision
         if (hitCollider.CompareTag(Global.TAG_POWER_GEM))
         {
             powerGem = hitCollider.GetComponent<PowerGem>();
             powerGem.ActivateGem(gameObject); // Pass self as identifier                        
         }
 
+        //activates a reciever mirror upon collision
         else if (hitCollider.CompareTag(Global.TAG_MIRROR_RECEIVER))
         {
             mirrorRecv = hitCollider.GetComponentInParent<Mirror>();
