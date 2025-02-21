@@ -29,6 +29,7 @@ public class SplashManager : MonoBehaviour
 
     private void Start()
     {
+        MusicManager.Instance.PlayBGM();
         GoToStartScreen();
     }
 

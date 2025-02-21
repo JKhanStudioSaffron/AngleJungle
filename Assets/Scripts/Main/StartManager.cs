@@ -21,8 +21,7 @@ public class StartManager : MonoBehaviour {
 
 	void Start () 
     {
-		showLoading = false;
-		MusicManager.Instance.PlayBGM ();
+		showLoading = false;		
         SetUpLastSettings();
 	}
 

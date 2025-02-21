@@ -460,51 +460,6 @@ Transform:
   - {fileID: 1219312907}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &418593889
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4571374742197434, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4571374742197434, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 146
-      objectReference: {fileID: 0}
-    - target: {fileID: 4571374742197434, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1405
-      objectReference: {fileID: 0}
-    - target: {fileID: 4571374742197434, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4571374742197434, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4571374742197434, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4571374742197434, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4571374742197434, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
 --- !u!95 &520778086 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95645885985563934, guid: 1f6b9466c19ec314885720fd830177ca,
@@ -2382,7 +2337,6 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 418593889}
   - {fileID: 988061723}
   - {fileID: 1839820478}
   - {fileID: 1416528597}
