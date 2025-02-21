@@ -15,7 +15,7 @@ using UnityEngine.UI;
 /// - Assign the logo image and text in the inspector.
 /// </summary>
 
-public class MoveToMain : MonoBehaviour
+public class SplashManager : MonoBehaviour
 {
     public Image LogoImage;
     public TMP_Text Text;
