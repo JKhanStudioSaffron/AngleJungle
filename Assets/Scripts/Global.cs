@@ -104,4 +104,20 @@ public class Global
 	public const string ANALYTICS_LEVEL_TIME = "levelTime";
 
 	public enum Interface {Touch = 0, Mouse = 1};
+
+    // Feedback Links - PC
+    public const string PlaytestFormURL_PC = "";
+    public const string BugReportURL_PC = "";
+    public const string FeatureSuggestURL_PC = "";
+    public const string CommunityJoinURL_PC = "https://discord.gg/fReDvV98";
+    // Feedback Links - Web
+    public const string PlaytestFormURL_Web = "https://your-web-playtest-form.com";
+    public const string BugReportURL_Web = "https://your-web-bug-report.com";
+    public const string FeatureSuggestURL_Web = "https://your-web-feature-suggest.com";
+    public const string CommunityJoinURL_Web = "https://your-web-community-join.com";
+    // Feedback Links - Mobile
+    public const string PlaytestFormURL_Mobile = "https://your-mobile-playtest-form.com";
+    public const string BugReportURL_Mobile = "https://your-mobile-bug-report.com";
+    public const string FeatureSuggestURL_Mobile = "https://your-mobile-feature-suggest.com";
+    public const string CommunityJoinURL_Mobile = "https://your-mobile-community-join.com";
 }
