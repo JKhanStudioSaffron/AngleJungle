@@ -1,8 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DG.Tweening;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
+/// <summary>
+/// Purpose: Manages treasure chest interactions and rewards upon level completion.
+/// Responsibilities:
+/// - Controls chest opening animation and effects when the player reaches it.
+/// - Checks if the player is completing the level for the first time and updates progress.
+/// - Instantiates and animates the level-specific treasure if applicable.
+/// - Triggers scene transitions after a short delay.
+/// Usage:
+/// - Attach to a treasure chest GameObject in the scene.
+/// - Ensure references to required objects (GameManager, particle effects, sprites) are assigned.
+/// - Automatically manages treasure display and level progression upon player collision.
+/// </summary>
 
 public class Treasure : MonoBehaviour {
 
@@ -12,55 +24,21 @@ public class Treasure : MonoBehaviour {
 	public GameObject GM;
 	public GameObject TreasureCanvas;
 	int levelIndex;
-	int TrophyIndex;
 	GameObject treasure;
 	Vector3 originTreasureScale;
-	bool isTreasureCanvasActivated = false;
+	const float timeTillSceneChange = 4.5f;
 
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start () 
     {
 		GetComponent<SpriteRenderer> ().sprite = sp_closedChest;
 		par_Chest.SetActive (false);
 		levelIndex = LevelManager.LevelIndex;
-		        
-        if (levelIndex <= 7)
-        {
-			MusicManager.Instance.PlayS1Sound ();
-		} 
-        else if (levelIndex > 7 && levelIndex <= 13)
-        {
-			MusicManager.Instance.PlayS2Sound ();
-		}
-        else if (levelIndex > 13 && levelIndex <= 18) 
-        {
-			MusicManager.Instance.PlayS3Sound ();
-		} 
-        else if (levelIndex > 18 && levelIndex <= 25) 
-        {
-			MusicManager.Instance.PlayS4Sound ();
-		}
-        else 
-        {
-			MusicManager.Instance.PlayS5Sound ();
-		}
+
+		MusicManager.Instance.PlayLevelMusic(levelIndex);
 
 		if(TreasureCanvas != null)
 			TreasureCanvas.SetActive(false);
-	}
-	
-	// Update is called once per frame
-	void Update () 
-    {
-		if (treasure != null) 
-        {
-			treasure.transform.position = Vector2.Lerp (treasure.transform.position, Camera.main.gameObject.transform.position, Time.deltaTime);
-			treasure.transform.localScale = Vector2.Lerp (treasure.transform.localScale, originTreasureScale * 2.4f, Time.deltaTime);
-		}
-		if (TreasureCanvas != null && isTreasureCanvasActivated) 
-        {
-			TreasureCanvas.GetComponentInChildren<Image> ().color = Color.Lerp (TreasureCanvas.GetComponentInChildren<Image> ().color, new Color(1,1,1,0.8f), Time.deltaTime);
-		}
 	}
 
 	void OnTriggerEnter2D(Collider2D coll)
@@ -81,29 +59,9 @@ public class Treasure : MonoBehaviour {
 			GetComponent<SpriteRenderer> ().sprite = sp_openChest;
 			par_Chest.SetActive (true);
 
-			if (isFirstTimePassThisLevel && (levelIndex == 1 || levelIndex == 7 || levelIndex == 13 || levelIndex == 18 || levelIndex == 25 || levelIndex == 30)) 
+			if (isFirstTimePassThisLevel && Trophys.Instance.Data.Exists(level => level.LevelNoToOpenAt == levelIndex))
             {
-				StartCoroutine (CountToShowTreasure ());
-				switch (levelIndex) {
-				case 1:
-					TrophyIndex = 0;
-					break;				
-				case 7:
-					TrophyIndex = 1;
-					break;
-				case 13:
-					TrophyIndex = 2;
-					break;
-				case 18:
-					TrophyIndex = 3;
-					break;
-				case 25:
-					TrophyIndex = 4;
-					break;
-				case 30:
-					TrophyIndex = 5;
-					break;
-				}
+				StartCoroutine (CountToShowTreasure ());				
 			} 
             else 
             {
@@ -115,14 +73,16 @@ public class Treasure : MonoBehaviour {
 	void TreasureOnScreen()
     {
 		//Instantiate Treasure
-		treasure = (GameObject)Instantiate (GM.GetComponent<Trophys> ().TrophyList [TrophyIndex], gameObject.transform.position, Quaternion.identity);
+		treasure = Trophys.Instance.CreateTrophyOfLevel(levelIndex, transform);
 		originTreasureScale = treasure.transform.localScale;
 
+		treasure.transform.DOMove(Camera.main.transform.position, timeTillSceneChange);
+		treasure.transform.DOScale(originTreasureScale * 2.4f, timeTillSceneChange);
 		//TreasureCanvas
 		if (TreasureCanvas != null) 
         {
 			TreasureCanvas.SetActive (true);
-			isTreasureCanvasActivated = true;
+			TreasureCanvas.GetComponentInChildren<Image>().DOFade(0.8f, timeTillSceneChange);
 		}
 	}
 

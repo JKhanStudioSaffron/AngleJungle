@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Defines level index ranges and specific level indices.
@@ -53,6 +54,28 @@ public struct SlotPositions
     public Sprite GreyObject;
     public Sprite RedObject;
     public Vector2[] Offsets;
+}
+
+/// <summary>
+/// Stores the level requirement and associated reward object for unlocking trophies.
+/// </summary>
+/// 
+[System.Serializable]
+public class LevelRewardData
+{
+    public int LevelNoToOpenAt;
+    public GameObject Reward;
+}
+
+/// <summary>
+/// Stores the level requirement and associated music to play on each level
+/// </summary>
+/// 
+[System.Serializable]
+public class MusicForLevels
+{
+    public LevelIndicesSetup LevelIndices;
+    public UnityEvent CallEvent;
 }
 
 public class Global

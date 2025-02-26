@@ -1100,6 +1100,102 @@ MonoBehaviour:
   MenuClick_as: {fileID: 82178426174695134}
   Click_as: {fileID: 82023041658892734}
   CreakClick_as: {fileID: 82474665498475726}
+  MusicForLevels:
+  - LevelIndices:
+      startLevelIndex: 0
+      endingLevelIndex: 7
+      OtherLevelIndices: 
+    CallEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114492681165012990}
+          m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
+          m_MethodName: PlayS1Sound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - LevelIndices:
+      startLevelIndex: 8
+      endingLevelIndex: 13
+      OtherLevelIndices: 
+    CallEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114492681165012990}
+          m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
+          m_MethodName: PlayS2Sound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - LevelIndices:
+      startLevelIndex: 14
+      endingLevelIndex: 18
+      OtherLevelIndices: 
+    CallEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114492681165012990}
+          m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
+          m_MethodName: PlayS3Sound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - LevelIndices:
+      startLevelIndex: 19
+      endingLevelIndex: 25
+      OtherLevelIndices: 
+    CallEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114492681165012990}
+          m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
+          m_MethodName: PlayS4Sound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - LevelIndices:
+      startLevelIndex: 26
+      endingLevelIndex: 30
+      OtherLevelIndices: 
+    CallEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 114492681165012990}
+          m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
+          m_MethodName: PlayS5Sound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1683013287267748
 GameObject:
   m_ObjectHideFlags: 0

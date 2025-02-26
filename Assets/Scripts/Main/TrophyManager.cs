@@ -1,7 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+/// <summary>
+/// Purpose: Manages trophy display and animations upon level completion.
+/// Responsibilities:
+/// - Controls player animation states based on trophy acquisition.
+/// - Instantiates and activates trophies at designated positions.
+/// - Handles trophy unlocking logic and updates saved progress.
+/// - Triggers explosion effects for newly obtained trophies.
+/// - Plays appropriate background music based on level progression.
+/// Usage:
+/// - Attach to a GameObject in the scene.
+/// - Assign trophy positions, explosion effects, and player animator.
+/// - Call ReturnMap() to navigate back to the map scene.
+/// </summary>
+
 
 public class TrophyManager : MonoBehaviour {
 
@@ -10,13 +26,13 @@ public class TrophyManager : MonoBehaviour {
 	int TrophyNum = 0;
 	bool showAnim = false;
 
-	List<GameObject> trophyList = new List<GameObject>();
 	GameObject animTrophy;
-	public List<Transform> trophyPosList = new List<Transform>();
-	public List<GameObject> bagList = new List<GameObject>();
-	private GameObject musicManager;
-	// Use this for initialization
-	
+
+	public List<Transform> TrophyPosList = new List<Transform>();
+
+	public List<LevelRewardData> BagsData;
+
+	// Use this for initialization	
     void Start () 
     {
 		int levelProgress = SaveLoad.data.LevelProgress;
@@ -25,84 +41,15 @@ public class TrophyManager : MonoBehaviour {
         playerAnimator.SetBool (Global.ANIMATION_IDLE, false);
         playerAnimator.SetBool (Global.ANIMATION_CELEBRATE, false);
 
-		if (levelProgress > 30) 
-        {
-			TrophyNum = 6;
-		} 
-        else if (levelProgress > 25) 
-        {
-			TrophyNum = 5;
-		} 
-        else if (levelProgress > 18) 
-        {
-			TrophyNum = 4;
-		} 
-        else if (levelProgress > 13) 
-        {
-			TrophyNum = 3;
-		} 
-        else if (levelProgress > 7) 
-        {
-			TrophyNum = 2;
-		}
-        else if (levelProgress > 1) 
-        {
-			TrophyNum = 1;
-		} 
-        else 
-        {
-			TrophyNum = 0;
-            playerAnimator.SetBool (Global.ANIMATION_IDLE, true);
-            playerAnimator.SetBool (Global.ANIMATION_HAPPY, false);
-            playerAnimator.SetBool (Global.ANIMATION_CELEBRATE, false);
-		}
+        Trophys.Instance.CreateTrophy(levelProgress, TrophyPosList);
 
-		//chest and bags
-		if(levelProgress > 1)
+        foreach (var item in BagsData.Where(bag => levelProgress > bag.LevelNoToOpenAt).Select(bag => bag.Reward))
         {
-			bagList [0].SetActive (true);
-		}
-		if(levelProgress > 3)
-        {
-			bagList [1].SetActive (true);
-		}
-		if(levelProgress > 5)
-        {
-			bagList [2].SetActive (true);
-		}
-		if(levelProgress > 9)
-        {
-			bagList [3].SetActive (true);
-		}
-		if(levelProgress > 11)
-        {
-			bagList [4].SetActive (true);
-		}
-		if(levelProgress > 15)
-        {
-			bagList [5].SetActive (true);
-		}
-		if(levelProgress > 17)
-        {
-			bagList [6].SetActive (true);
-		}
-		if(levelProgress > 20)
-        {
-			bagList [7].SetActive (true);
-		}
-		if(levelProgress > 22)
-        {
-			bagList [8].SetActive (true);
-		}
-		if(levelProgress > 27)
-        {
-			bagList [9].SetActive (true);
-		}
-		if(levelProgress > 29)
-        {
-			bagList [10].SetActive (true);
-		}
-            
+            item.SetActive(true);
+        }
+
+        TrophyNum = Trophys.Instance.TrophyList.Count - 1;
+
 		if (SaveLoad.data.TrophyGot < TrophyNum) 
         {
 			SaveLoad.data.TrophyGot = TrophyNum;
@@ -110,17 +57,12 @@ public class TrophyManager : MonoBehaviour {
 			showAnim = true;
 		}
 
-		for (int i = 0; i < TrophyNum; i++) 
-        {
-			trophyList.Add(Instantiate (GetComponent<Trophys> ().TrophyList [i], trophyPosList[i].position, Quaternion.identity));
-		}
-
 		if (showAnim) 
         {
             playerAnimator.SetBool (Global.ANIMATION_HAPPY, false);
             playerAnimator.SetBool (Global.ANIMATION_IDLE, false);
             playerAnimator.SetBool (Global.ANIMATION_CELEBRATE, true);
-			animTrophy = trophyList [TrophyNum - 1];
+			animTrophy = Trophys.Instance.TrophyList[TrophyNum];
 			animTrophy.SetActive (false);
 			StartCoroutine (CountToShowAnim());
 		}
@@ -135,8 +77,8 @@ public class TrophyManager : MonoBehaviour {
 		}
 
 	}
-
-	public void ReturnMap()
+	
+    public void ReturnMap()
     {
 		MusicManager.Instance.PlayClickButton ();
         SceneManager.LoadScene (Global.SCENE_MAP);
