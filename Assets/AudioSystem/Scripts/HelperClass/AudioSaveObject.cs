@@ -31,6 +31,13 @@ public class AudioSaveObject : MonoBehaviour
     [HideInInspector]
     public SoundSettings SoundData;
 
+    public void ReloadInstance()
+    {
+        SoundData = new(0,0,0);
+        Save();
+        Instance = Load();
+    }
+
     public string SavePath => Path.Combine(Application.persistentDataPath, "AudioSaveFile.json");
 
     public void Save()
@@ -45,20 +52,21 @@ public class AudioSaveObject : MonoBehaviour
 
     AudioSaveObject Load()
     {
-        if (File.Exists(SavePath))
-        {
-            string json;
+        string json = "";
 #if UNITY_WEBGL
             json = PlayerPrefs.GetString(AudioClassUtility.SoundSaveData);
 #else
+        if (File.Exists(SavePath))
+        {
+           
             json = File.ReadAllText(SavePath);
 #endif
-            JsonUtility.FromJsonOverwrite(json, Instance);
         }
         else
         {
             Debug.LogWarning("Save file not found.");
         }
+        JsonUtility.FromJsonOverwrite(json, Instance);
         return Instance;
     }
 }
