@@ -60,12 +60,13 @@ public class AudioSaveObject : MonoBehaviour
         {
            
             json = File.ReadAllText(SavePath);
-#endif
+
         }
         else
         {
             Debug.LogWarning("Save file not found.");
         }
+#endif
         JsonUtility.FromJsonOverwrite(json, Instance);
         return Instance;
     }
