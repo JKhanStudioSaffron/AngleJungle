@@ -63,6 +63,7 @@ public class StartManager : MonoBehaviour {
 		if (SaveLoad.data.LevelProgress < 1) {
 			SaveLoad.data.LevelProgress = 1;
 			SaveLoad.data.TrophyOrder.Shuffle ();
+            Trophys.Instance.ShuffleTrophies();
 			SaveLoad.Save ();
 			SceneManager.LoadScene (Global.SCENE_MAP);
         }

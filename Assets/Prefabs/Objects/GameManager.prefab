@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4636598621253464}
   - component: {fileID: 114253248242127354}
   - component: {fileID: 114697244858140648}
-  - component: {fileID: 114174017154762006}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -51,6 +50,7 @@ MonoBehaviour:
   canvasInGame: {fileID: 0}
   canvasPause: {fileID: 0}
   canvasStageClear: {fileID: 0}
+  canvasLastStageClear: {fileID: 0}
   Player: {fileID: 0}
   GoButton: {fileID: 0}
   door: {fileID: 0}
@@ -71,26 +71,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeOutTexture: {fileID: 2800000, guid: 48b6623a2e17ee348b5d93680ec51c74, type: 3}
   fadeSpeed: 2
---- !u!114 &114174017154762006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1153813398034768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f01fa303b436a0e4da922048a28d0492, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrophyList: []
-  Tro1: {fileID: 1152687875342736, guid: a44838c6b7154f44faca06c2f6f7081d, type: 3}
-  Tro2: {fileID: 1277400857420014, guid: 729621ac8292d224291f534c8592aa0f, type: 3}
-  Tro3: {fileID: 1276046753201932, guid: bcbf674daffb7354593c1b4afe9a0bee, type: 3}
-  Tro4: {fileID: 1918286963650010, guid: bc8c16950a148f246a370f68c484d81f, type: 3}
-  Tro5: {fileID: 1601391744600586, guid: 9a1fd5fe774bf1d4da5790f5bac9e626, type: 3}
-  Tro6: {fileID: 1918286963650010, guid: f31f3f74adb57e7448dbf21559adf361, type: 3}
-  InitTrosList: []
 --- !u!1 &1498332883331050
 GameObject:
   m_ObjectHideFlags: 0

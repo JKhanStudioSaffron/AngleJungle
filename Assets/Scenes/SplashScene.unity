@@ -746,9 +746,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4571374742197434, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
+    - target: {fileID: 1656329408167808, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
+      propertyPath: m_Name
+      value: MusicManager
       objectReference: {fileID: 0}
     - target: {fileID: 4571374742197434, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -776,6 +776,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4571374742197434, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
       propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571374742197434, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571374742197434, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571374742197434, guid: 63cf2c66f59f80140a9192a8324644fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

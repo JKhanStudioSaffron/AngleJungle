@@ -1,6 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+
+/// <summary>
+/// Purpose: Manages background music and sound effects for different game scenes and events.
+/// Responsibilities:
+/// - Ensures a singleton instance for global access.
+/// - Handles background music playback and transitions with fade-out effects.
+/// - Plays specific sounds based on level progression and user interactions.
+/// - Prevents overlapping audio by stopping previous sounds before playing new ones.
+/// Usage:
+/// - Call PlayLevelMusic(levelIndex) to play music for a specific level.
+/// - Use PlayBGM(), PlayMAPSound(), PlayCabinSound(), etc., to trigger corresponding sounds.
+/// - Call PlayClickButton() or PlayMenuButton() for UI interactions.
+/// - Background music transitions are handled via fade-out coroutines.
+/// </summary>
 
 public class MusicManager : MonoBehaviour {
 	
@@ -31,9 +47,16 @@ public class MusicManager : MonoBehaviour {
 	private Coroutine curCo;
 	private AudioSource curAs;
 
-	public void PauseBGM()
+	public List<MusicForLevels> MusicForLevels;
+
+	public void PlayLevelMusic(int levelIndex)
 	{
-		//BGM_as.Pause();
+		UnityEvent funct = MusicForLevels.FirstOrDefault(msc => msc.LevelIndices?.OtherLevelIndices?.Contains(levelIndex) == true)?.CallEvent;
+
+        if (funct == null)
+            funct = MusicForLevels.Find(index => (index.LevelIndices.startLevelIndex <= levelIndex && index.LevelIndices.endingLevelIndex >= levelIndex)).CallEvent;
+
+		funct?.Invoke();
 	}
 
 	public void StopBGM()
@@ -174,17 +197,6 @@ public class MusicManager : MonoBehaviour {
 	{
 		CreakClick_as.Stop ();
 		CreakClick_as.Play ();
-	}
-
-	public void PauseBGMForSeconds(float pauseSecs){
-		//BGM_as.Pause();
-		//StartCoroutine(PauseBGMCo(pauseSecs));
-	}
-
-	IEnumerator PauseBGMCo(float pauseSecs)
-	{
-		yield return new WaitForSeconds (pauseSecs);
-		BGM_as.Play();
 	}
 
 	IEnumerator fadeOut(AudioSource auSource)
