@@ -26,7 +26,7 @@ public class Treasure : MonoBehaviour {
 	int levelIndex;
 	GameObject treasure;
 	Vector3 originTreasureScale;
-	float timeTillSceneChange = 4.5f;
+	const float timeTillSceneChange = 4.5f;
 
     // Use this for initialization
     void Start () 
