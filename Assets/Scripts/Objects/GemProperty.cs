@@ -28,6 +28,7 @@ public class GemProperty : MonoBehaviour
 
         GemScript.gemAngle = AngleVal;
         AngleText.text = $"{AngleVal}°";
+        GemScript.gameObject.name = $"Gem_{AngleVal}";
         if (InitialMirror != null)
         {
             GemScript.initialMirror = InitialMirror;

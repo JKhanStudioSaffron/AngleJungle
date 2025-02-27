@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class Gem : MonoBehaviour
 {
@@ -12,8 +14,8 @@ public class Gem : MonoBehaviour
 
 	// Game objects
 	public GameObject initialMirror { get; set; }
-	private Gem gemToBeSwapped;
-	public GameObject OnSelectPar;
+	private List<Gem> gemToBeSwapped = new();
+    public GameObject OnSelectPar;
 	private Mirror MirrorGO;
 
 	// Vectors
@@ -43,6 +45,8 @@ public class Gem : MonoBehaviour
 	//SpriteRenderer
 	SpriteRenderer mySprite;
 
+	Collider2D coll;
+
     private void OnEnable()
     {
 		InputManager.Instance.Pressed += OnGemPressed;
@@ -62,6 +66,7 @@ public class Gem : MonoBehaviour
 	{
 		cam = Camera.main;
 		mySprite = GetComponent<SpriteRenderer>();
+        coll = GetComponent<Collider2D>();
         layerMask = ~ (1 << LayerMask.NameToLayer(Global.LAYER_POWER_GEM));
 		originalScale = transform.localScale;
 		onSlotScale = originalScale / 1.6f;
@@ -137,11 +142,11 @@ public class Gem : MonoBehaviour
 			SetNoInput();
 
 			// Gem swap function
-			if (gemToBeSwapped != null && MirrorGO != null)
+			if (gemToBeSwapped.Count > 0 && MirrorGO != null)
 			{
-				AnalyticsSingleton.Instance.gemHistory.AddAction(MirrorGO.name, Global.ANALYTICS_ACTION_REMOVED, gemToBeSwapped.name, Time.time);
-				gemToBeSwapped.ReleaseThisGem();
-				gemToBeSwapped = null;
+				AnalyticsSingleton.Instance.gemHistory.AddAction(MirrorGO.name, Global.ANALYTICS_ACTION_REMOVED, gemToBeSwapped.Last().name, Time.time);
+				gemToBeSwapped.Last().ReleaseThisGem();
+				RemoveFromList();
 			}
 
 			// Handling collisions with mirror
@@ -162,9 +167,7 @@ public class Gem : MonoBehaviour
 					//set anti-cheater conuter to 2
 					Global.antiCheater = 2;
                     MirrorGO.SetAngle?.Invoke();
-
-                    if (gemToBeSwapped != null)
-						gemToBeSwapped = null;
+					RemoveFromList();
 				}
 			}
 			ScaleOnPlacement();
@@ -260,6 +263,42 @@ public class Gem : MonoBehaviour
 		}
 	}
 
+	void AddInSwapList(Gem interactedGem)
+	{
+		if (!gemToBeSwapped.Contains(interactedGem))
+		{
+			gemToBeSwapped.Add(interactedGem);
+			interactedGem.transform.localScale = originalScale * 1.2f;
+		}
+
+    }
+
+	//if placed on slot then empty the gemswapped list or
+	//check if its collider is not interacting with the gems in swap list then remove those gems
+    void RemoveFromList()
+	{
+		if (onSlot)
+		{
+			foreach (Gem gem in gemToBeSwapped)
+			{
+                gem.ScaleOnPlacement();
+            }
+
+			gemToBeSwapped.Clear ();
+			return;
+        }
+
+        gemToBeSwapped.RemoveAll(gem =>
+        {
+            if (!gem.coll.OverlapPoint(transform.position))
+            {
+                gem.ScaleOnPlacement();
+                return true; // Remove from list
+            }
+            return false; // Keep in list
+        });
+    }
+
 	void OnTriggerEnter2D (Collider2D coll)
 	{
 		// behavior of entering mirror
@@ -282,8 +321,7 @@ public class Gem : MonoBehaviour
 					}
 					else
 					{
-						transform.localScale = originalScale * 1.2f;
-						interactedGem.gemToBeSwapped = this;
+						interactedGem.AddInSwapList(this);
 					}
 				}
 			}
@@ -299,18 +337,17 @@ public class Gem : MonoBehaviour
             MirrorGO = null;
         }
 
-        //the gem on slot checks if the interacting gem has stopped interacting
-        if (coll.gameObject.CompareTag(Global.TAG_DRAGGABLE) && onSlot)
-        {
-            if (coll.gameObject.TryGetComponent<Gem>(out var interactedGem))
-            {
-                if (!interactedGem.onSlot)
-                {
-                    ScaleOnPlacement();
-					interactedGem.gemToBeSwapped = null;
-                }
-            }
-        }
-    }
+		//the moving gem itself checks whose collider has it exited
+		if (coll.gameObject.CompareTag(Global.TAG_DRAGGABLE) && !onSlot)
+		{
+			if (coll.gameObject.TryGetComponent<Gem>(out var interactedGem))
+			{
+				if (interactedGem.onSlot)
+				{
+					RemoveFromList();
+				}
+			}
+		}
+	}
 
 }
