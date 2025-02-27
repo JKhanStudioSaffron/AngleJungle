@@ -19,10 +19,10 @@ public class StartManager : MonoBehaviour {
         SaveLoad.Load();
     }
 
-	void Start () 
+	async void Start () 
     {
-		showLoading = false;		
-        SetUpLastSettings();
+		showLoading = false;
+        await AccessibilitySaveObject.Instance.InitializeLocalization(SetUpLastSettings);
 	}
 
     void SetUpLastSettings()
@@ -31,6 +31,7 @@ public class StartManager : MonoBehaviour {
         LocalizationSettings.SelectedLocale = selectedLocale;
         TextResize.ResizeText?.Invoke(AccessibilitySaveObject.Instance.OptionsData.FontMultiplier);
     }
+
     private void OnGUI()
     {
 	    if (showLoading) 
@@ -48,10 +49,13 @@ public class StartManager : MonoBehaviour {
 
     }
 
-    public void Reset(int level)
+    public async void Reset(int level)
     {
         SaveLoad.data = new PlayerData (level, 0, false);
         SaveLoad.Save ();
+        AccessibilitySaveObject.Instance.ReloadInstance();
+        AudioSaveObject.Instance.ReloadInstance();
+        await AccessibilitySaveObject.Instance.InitializeLocalization(SetUpLastSettings);
         ShowResetConfirm();
     }
 

@@ -1,5 +1,8 @@
+using System;
 using System.IO;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 /// <summary>
 /// Purpose: Manages saving and loading game options to ensure persistence across sessions.
@@ -32,6 +35,23 @@ public class AccessibilitySaveObject : MonoBehaviour
     [HideInInspector]
     public OptionsData OptionsData = new();
 
+    //need it for webgl builds as localization asset was not preloading.
+    //use this function where Locales are loaded
+    public async Task InitializeLocalization(Action loadAfterInit = null)
+    {
+        if (!LocalizationSettings.InitializationOperation.IsDone)
+            await LocalizationSettings.InitializationOperation.Task;
+
+        loadAfterInit?.Invoke();
+    }
+
+    public void ReloadInstance()
+    {
+        OptionsData = new();
+        Save();
+        Instance = Load();
+    }
+
     public void SaveOptionsState(OptionsData data)
     {
         OptionsData = data;
@@ -52,20 +72,22 @@ public class AccessibilitySaveObject : MonoBehaviour
 
     AccessibilitySaveObject Load()
     {
-        if (File.Exists(SavePath))
-        {
-            string json;
+        string json = "";
 #if UNITY_WEBGL
             json = PlayerPrefs.GetString(AccessibilityClassUtility.AccessibilitySaveData);
 #else
+        if (File.Exists(SavePath))
+        {
+            
             json = File.ReadAllText(SavePath);
-#endif
-            JsonUtility.FromJsonOverwrite(json, Instance);
+
         }
         else
         {
             Debug.LogWarning("Save file not found.");
         }
+#endif
+        JsonUtility.FromJsonOverwrite(json, Instance);
         return Instance;
     }
 }
