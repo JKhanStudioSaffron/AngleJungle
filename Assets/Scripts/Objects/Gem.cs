@@ -47,6 +47,9 @@ public class Gem : MonoBehaviour
 
 	Collider2D coll;
 
+	const float scaleUpFactor = 1.2f;
+	const float scaleDownSlotFactor = 1.6f;
+
     private void OnEnable()
     {
 		InputManager.Instance.Pressed += OnGemPressed;
@@ -69,7 +72,7 @@ public class Gem : MonoBehaviour
         coll = GetComponent<Collider2D>();
         layerMask = ~ (1 << LayerMask.NameToLayer(Global.LAYER_POWER_GEM));
 		originalScale = transform.localScale;
-		onSlotScale = originalScale / 1.6f;
+		onSlotScale = originalScale / scaleDownSlotFactor;
 		originalPosition = transform.position;
         OnSelectPar.SetActive (false);
 		PutGemInMirror ();
@@ -268,7 +271,7 @@ public class Gem : MonoBehaviour
 		if (!gemToBeSwapped.Contains(interactedGem))
 		{
 			gemToBeSwapped.Add(interactedGem);
-			interactedGem.transform.localScale = originalScale * 1.2f;
+			interactedGem.transform.localScale = originalScale * scaleUpFactor;
 		}
 
     }
